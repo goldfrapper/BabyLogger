@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=baby_app
+Exec=baby_app
+Name=baby_app
+# translation example:
+# your app name in German locale (de)
+Name[de]=baby_app
+
