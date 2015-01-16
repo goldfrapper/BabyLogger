@@ -10,25 +10,25 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = baby_app
+TARGET = harbour-babylogger
 
 CONFIG += sailfishapp
 
-SOURCES += src/baby_app.cpp
+SOURCES += src/baby-logger.cpp
 
-OTHER_FILES += qml/baby_app.qml \
+OTHER_FILES += qml/baby-logger.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
     qml/pages/SecondPage.qml \
-    rpm/baby_app.changes.in \
-    rpm/baby_app.spec \
-    rpm/baby_app.yaml \
+    rpm/baby-logger.changes.in \
+    rpm/baby-logger.spec \
+    rpm/baby-logger.yaml \
     translations/*.ts \
-    baby_app.desktop \
+    baby-logger.desktop \
     qml/pages/BabyModel.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
-TRANSLATIONS += translations/baby_app-de.ts
+TRANSLATIONS += translations/baby-logger-de.ts
 
