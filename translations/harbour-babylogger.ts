@@ -4,10 +4,7 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
-        <translation type="vanished">Mein Cover</translation>
-    </message>
-    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="43"/>
         <source>Baby logger 0.1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -15,38 +12,32 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Show Page 2</source>
-        <translation type="vanished">Zur Seite 2</translation>
-    </message>
-    <message>
-        <source>UI Template</source>
-        <translation type="vanished">UI-Vorlage</translation>
-    </message>
-    <message>
-        <source>Hello Sailors</source>
-        <translation type="vanished">Hallo Matrosen</translation>
-    </message>
-    <message>
-        <source>Baby Logger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../qml/pages/FirstPage.qml" line="45"/>
         <source>Show logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/FirstPage.qml" line="63"/>
+        <source>Baby Logger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FirstPage.qml" line="101"/>
         <source>sleeping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/FirstPage.qml" line="101"/>
         <source>awake...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/FirstPage.qml" line="119"/>
         <source>Stop sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/FirstPage.qml" line="119"/>
         <source>Start sleep</source>
         <translation type="unfinished"></translation>
     </message>
@@ -54,23 +45,13 @@
 <context>
     <name>SecondPage</name>
     <message>
-        <source>Nested Page</source>
-        <translation type="vanished">Unterseite</translation>
-    </message>
-    <message>
-        <source>Item</source>
-        <translation type="vanished">Element</translation>
-    </message>
-    <message>
+        <location filename="../qml/pages/SecondPage.qml" line="48"/>
         <source>Baby logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/SecondPage.qml" line="100"/>
         <source>Set time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Set date</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

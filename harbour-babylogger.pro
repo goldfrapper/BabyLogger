@@ -14,21 +14,21 @@ TARGET = harbour-babylogger
 
 CONFIG += sailfishapp
 
-SOURCES += src/baby-logger.cpp
+SOURCES += src/harbour-babylogger.cpp
 
-OTHER_FILES += qml/baby-logger.qml \
+OTHER_FILES += qml/harbour-babylogger.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
     qml/pages/SecondPage.qml \
-    rpm/baby-logger.changes.in \
-    rpm/baby-logger.spec \
-    rpm/baby-logger.yaml \
+    rpm/harbour-babylogger.changes.in \
+    rpm/harbour-babylogger.spec \
+    rpm/harbour-babylogger.yaml \
     translations/*.ts \
-    baby-logger.desktop \
+    harbour-babylogger.desktop \
     qml/pages/BabyModel.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
-TRANSLATIONS += translations/baby-logger-de.ts
+TRANSLATIONS += translations/harbour-babylogger-de.ts
 

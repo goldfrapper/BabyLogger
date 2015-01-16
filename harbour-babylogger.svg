@@ -20,13 +20,13 @@
    xml:space="preserve"
    id="svg2"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="baby_app.svg"
+   sodipodi:docname="baby-logger.svg"
    inkscape:export-filename="C:\Users\Tom\baby_app\baby_app.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"><metadata
    id="metadata27"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
    id="defs25"><linearGradient
    inkscape:collect="always"
    id="linearGradient3850"><stop
@@ -78,9 +78,9 @@
    inkscape:window-height="716"
    id="namedview23"
    showgrid="false"
-   inkscape:zoom="2.744186"
-   inkscape:cx="39.195287"
-   inkscape:cy="54.450286"
+   inkscape:zoom="3.8808651"
+   inkscape:cx="37.070006"
+   inkscape:cy="43.270462"
    inkscape:window-x="-8"
    inkscape:window-y="-8"
    inkscape:window-maximized="1"
@@ -91,9 +91,9 @@
 </g>
 <path
    inkscape:connector-curvature="0"
-   style="fill:#000080"
+   style="fill:#000080;stroke:#678ae0;stroke-width:2.40818095;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
    id="path11"
-   d="M 84.277,0.3 43,0.3 C 19.417,0.3 0.3,19.418 0.3,43 l 0,0.281237 C 0.3,65.385034 17.244203,85.7 42.809864,85.7 L 43,85.7 C 66.583,85.7 85.7,66.582 85.7,43 l 0,-41.277 C 85.7,0.937 85.063,0.3 84.277,0.3 z"
+   d="m 83.119758,1.4926959 -40.248595,0 c -22.995436,0 -41.6361416,18.6416811 -41.6361416,41.6361411 l 0,0.274231 c 0,21.553086 16.5220426,41.361911 41.4507426,41.361911 l 0.185399,0 c 22.995436,0 41.636141,-18.641681 41.636141,-41.636142 l 0,-40.2485948 c 0,-0.766417 -0.62113,-1.3875463 -1.387546,-1.3875463 z"
    sodipodi:nodetypes="sssssssss" /><path
    sodipodi:type="arc"
    style="fill:url(#linearGradient3856);fill-opacity:1;stroke:none"
@@ -103,11 +103,11 @@
    sodipodi:rx="33.434322"
    sodipodi:ry="33.434322"
    d="m 79.987289,58.578388 a 33.434322,33.434322 0 1 1 -66.868644,0 33.434322,33.434322 0 1 1 66.868644,0 z"
-   transform="matrix(1.0983606,0,0,1.0983606,-8.1319397,-20.975783)" />
+   transform="matrix(1.0709953,0,0,1.0709953,-6.986839,-19.253007)" />
 <g
    id="g3073"
    style="fill:#ffffff"
-   transform="translate(0,-0.54661017)"><path
+   transform="matrix(0.97508526,0,0,0.97508526,0.94249572,0.66717874)"><path
      id="path3037"
      d="m 27.652209,26.359565 c -1.112593,0 -2.013334,-0.900741 -2.013334,-2.013333 v -8.337778 c 0,-1.112593 0.900741,-2.014074 2.013334,-2.014074 1.112592,0 2.014074,0.901481 2.014074,2.014074 v 8.338518 c 0,1.111852 -0.901482,2.012593 -2.014074,2.012593 z"
      inkscape:connector-curvature="0"
