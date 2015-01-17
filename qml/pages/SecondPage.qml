@@ -42,7 +42,8 @@ Page {
 
         property Item contextMenu
 
-        model: BabyModel {}
+        model: mainwindow.babymodel
+
         anchors.fill: parent
         header: PageHeader {
             title: qsTr("Baby logs")
@@ -114,13 +115,6 @@ Page {
 
                             d.setHours( dialog.hour );
                             d.setMinutes( dialog.minute );
-
-                            // Check if requested time does not mess up timeline
-                            // ie: should not be before the previous logged time
-                            console.log( listView.get( currentIndex - 1 ).date );
-                            if( d.getTime() < listView.get( currentIndex - 1 ).date ) {
-                                // TODO show warning
-                            }
 
                             remorse.execute("Updating time", function() {
                                 listView.model.updateLogEntry( currentIndex, d.getTime() );

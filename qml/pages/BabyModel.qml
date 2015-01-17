@@ -33,7 +33,7 @@ import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
 
 ListModel {
-    id: dataSet
+//    id: dataSet
 
     // if the baby is sleeping
     property bool is_sleeping: false
@@ -80,6 +80,9 @@ ListModel {
         {
             // Create if not exists
             var out = tx.executeSql("CREATE TABLE IF NOT EXISTS actions(date INTEGER, name TEXT)");
+
+            // Clear current data
+            if(count) clear();
 
             // Load data
             var res = tx.executeSql("SELECT * FROM actions ORDER BY date DESC LIMIT 30");
@@ -143,17 +146,49 @@ ListModel {
     /**
      * Updates the log entry for the given timestamp into new_timestamp
      */
-    function updateLogEntry( timestamp, new_timestamp )
+    function updateLogEntry( index, new_timestamp )
     {
-        // TODO: Validate
+        var curr = get( index );
+        if(!curr) {
+            return false;
+        }
 
-//        console.log(timestamp, new_timestamp);
+        // Should not be in the future
+        if(new_timestamp > Date.now()) {
+            // TODO show warning
+            console.log("nah...");
+            return false;
+        }
+
+        // Check if requested time does not mess up timeline
+        // ie: should not be before the previous logged time
+        var prev = get( index + 1 );
+        var next = (index !== 0)? get( index - 1 ) : false;
+        if( new_timestamp <= prev.date || (next && next.date <= new_timestamp)) {
+            // TODO show warning
+            console.log("nah...");
+            return false;
+        }
 
         // Store data in DB
         var db = _getDatabaseHandle();
         db.transaction(function(tx)
         {
-            tx.executeSql('UPDATE actions SET date = ? WHERE date = ?', [ timestamp, new_timestamp ]);
+
+            var sql = "UPDATE actions SET date = ? WHERE date = ?";
+            try {
+                var rs = tx.executeSql(sql, [new_timestamp, curr.date]);
+                if(!rs.rowsAffected) {
+                    console.log("failed", rs.rowsAffected);
+                } else {
+                    // Update model
+                    setProperty(index, "date", new_timestamp );
+                }
+            } catch(e) {
+
+                // TODO show warning
+                console.log("fuck", e);
+            }
         });
     }
 }

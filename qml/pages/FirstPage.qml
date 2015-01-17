@@ -42,6 +42,10 @@ Page {
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
             MenuItem {
+                text: qsTr("Start sleep")
+                onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
+            }
+            MenuItem {
                 text: qsTr("Show logs")
                 onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
             }
@@ -58,6 +62,8 @@ Page {
             width: page.width
             height: parent.height
             spacing: Theme.paddingLarge
+            x: Theme.paddingLarge
+            anchors.verticalCenter: parent.verticalCenter
 
             PageHeader {
                 title: qsTr("Baby Logger")
@@ -72,8 +78,11 @@ Page {
                     text: "00:00:00"
 //                    color: Theme.secondaryHighlightColor
                     font.pixelSize: Theme.fontSizeHuge
+//                    anchors.verticalCenter: parent.verticalCenter
+//                    anchors.margins: Theme.paddingLarge
+
+                    x: Theme.paddingLarge
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.margins: Theme.paddingLarge
                 }
 
                 Label {
@@ -81,7 +90,6 @@ Page {
                     text: "???"
                     font.pixelSize: Theme.fontSizeMedium
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.margins: Theme.paddingLarge
                 }
 
                 Timer {
@@ -112,7 +120,8 @@ Page {
                 height: Theme.itemSizeMedium
 
                 Button {
-                   text: "???"
+                    text: "???"
+
 
                    function setButtonTitle()
                    {
@@ -133,7 +142,10 @@ Page {
             // TODO Add date-sections (ListView.section)
             SilicaListView {
                 id: logListing
-                model: BabyModel {}
+
+//                property alias model: babymodel
+                model: mainwindow.babymodel
+//                model: BabyModel {}
 
                 height: model.count * Theme.itemSizeExtraSmall
                 anchors.top: actionButtons.bottom

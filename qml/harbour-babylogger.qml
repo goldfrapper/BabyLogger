@@ -34,6 +34,12 @@ import "pages"
 
 ApplicationWindow
 {
+    id: mainwindow
+    BabyModel {
+        id: babymodel
+    }
+    default property alias babymodel: babymodel
+
     initialPage: Component { FirstPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 }
