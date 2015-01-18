@@ -4,8 +4,18 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="43"/>
-        <source>Baby logger 0.1</source>
+        <location filename="../qml/cover/CoverPage.qml" line="44"/>
+        <source>Baby logger 0.2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="65"/>
+        <source>sleeping...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="65"/>
+        <source>awake...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -37,26 +37,43 @@ CoverBackground {
 //    property Item baby_model: BabyLogger.BabyModel {}
     anchors.fill: parent
 
-    Label {
-        id: label
+    Column {
         anchors.centerIn: parent
-        text: qsTr("Baby logger 0.1")
+
+        Label {
+            text: qsTr("Baby logger 0.2")
+        }
+
+        Label {
+            id: counter_clock
+            font.pixelSize: Theme.fontSizeHuge
+            text: "00:00:00"
+        }
+
+        Label {
+            id: counter_text
+            text: "???"
+            font.pixelSize: Theme.fontSizeMedium
+        }
+
+        Timer {
+            interval: 500
+            running: active
+            repeat: true
+            onTriggered: {
+                counter_clock.text = mainwindow.babymodel.getCurrentTimer();
+                counter_text.text = (mainwindow.babymodel.is_sleeping? qsTr("sleeping...") : qsTr("awake..."));
+            }
+        }
+
+
+
     }
 
-//    Label {
-//        id: counter
-//        text: "00:00:00"
 
-//        Timer {
-//            interval: 500
-//            running: active
-//            repeat: true
-//            onTriggered: {
-//                console.log(baby_model);
-//                counter.text = baby_model.getCurrentTimer();
-//            }
-//        }
-//    }
+
+
+
 
 //    CoverActionList {
 //        CoverAction {

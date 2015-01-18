@@ -8,7 +8,15 @@
         <translation type="vanished">Mein Cover</translation>
     </message>
     <message>
-        <source>Baby logger 0.1</source>
+        <source>Baby logger 0.2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sleeping...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>awake...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
