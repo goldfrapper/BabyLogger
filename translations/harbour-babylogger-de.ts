@@ -2,21 +2,39 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>CoverPage</name>
+    <name>BabyModel</name>
     <message>
-        <source>My Cover</source>
-        <translation type="vanished">Mein Cover</translation>
-    </message>
-    <message>
-        <source>Baby logger 0.2</source>
+        <source>Breast milk</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Formula</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pureed food</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Counter</name>
     <message>
         <source>sleeping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>awake...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CoverPage</name>
+    <message>
+        <source>My Cover</source>
+        <translation type="vanished">Mein Cover</translation>
+    </message>
+    <message>
+        <source>Baby logger 0.4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -35,11 +53,11 @@
         <translation type="vanished">Hallo Matrosen</translation>
     </message>
     <message>
-        <source>Baby Logger</source>
+        <source>Show logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show logs</source>
+        <source>Baby Logger</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -60,6 +78,60 @@
     </message>
 </context>
 <context>
+    <name>LogMealDialog</name>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quantity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Common choices:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Breast milk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Formula 60ml</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Formula 120ml</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Overview</name>
+    <message>
+        <source>Show logs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop sleep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start sleep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Baby Logger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log Meal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Actions Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SecondPage</name>
     <message>
         <source>Nested Page</source>
@@ -70,11 +142,31 @@
         <translation type="vanished">Element</translation>
     </message>
     <message>
-        <source>Baby logs</source>
+        <source>Set time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set time</source>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Baby Logger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log Meal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop sleep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start sleep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Actions Menu</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

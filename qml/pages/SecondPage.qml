@@ -45,8 +45,35 @@ Page {
         model: mainwindow.babymodel
 
         anchors.fill: parent
-        header: PageHeader {
-            title: qsTr("Baby logs")
+//        header: PageHeader {
+//            title: qsTr("Baby logs")
+//        }
+
+        header: Item {
+            height: childrenRect.height
+            width: parent.width
+
+            anchors.bottomMargin: Theme.paddingLarge
+
+            PageHeader {
+                id: pageHeader
+                title: qsTr("Baby Logger")
+                anchors.right: parent.right
+            }
+
+            Counter {
+                id: counter
+                width: parent.width
+                height: childrenRect.height
+                anchors.top: pageHeader.bottom
+                x: Theme.paddingLarge
+            }
+        }
+
+        section.property: "day"
+        section.delegate: SectionHeader {
+            text: section
+            height: Theme.itemSizeExtraSmall
         }
 
         function formatDate(ts)
@@ -56,10 +83,9 @@ Page {
             }
             var d = new Date();
             d.setTime(ts);
-            var a = [ pad(d.getDate()), pad(d.getMonth() + 1), pad(d.getFullYear()) ];
-            var b = [ pad(d.getHours()), pad(d.getMinutes()) ];
-            var str = a.join("-") + " " + b.join(":");
-            return str;
+            var a = [ pad(d.getDate()), pad(d.getMonth() + 1), pad(d.getFullYear()) ].join("-");
+            var b = [ pad(d.getHours()), pad(d.getMinutes()) ].join(":");
+            return b;
         }
 
         delegate: Item {
@@ -72,12 +98,75 @@ Page {
             BackgroundItem {
                 id: contentItem
                 width: parent.width
+                height: Theme.itemSizeExtraSmall
+
                 Label {
-                    x: Theme.paddingLarge
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "[" + listView.formatDate(date) + "] " + action
+                    id: log_startdate
+                    text: listView.formatDate(date)
                     color: contentItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+
+                    x: Theme.paddingLarge
+                    height: Theme.itemSizeExtraSmall
+                    verticalAlignment: Text.AlignVCenter
                 }
+                Label {
+                    id: log_action
+                    text: " " + action
+                    color: contentItem.highlighted ? Theme.highlightColor : Theme.secondaryColor
+                    anchors.left: log_startdate.right
+                    height: Theme.itemSizeExtraSmall
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Component.onCompleted: {
+                    if(action === "meal") {
+                        extra_meal.createObject(contentItem);
+                    } else {
+                        extra_sleep.createObject(contentItem);
+                    }
+                }
+
+                Component {
+                    id: extra_meal
+
+                    Label {
+                        id: log_meal
+                        enabled: (action === "meal")? true : false;
+                        text: mainwindow.babymodel.getMealInfoString(date)
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.paddingLarge
+                        height: Theme.itemSizeExtraSmall
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: Theme.fontSizeSmall
+                    }
+                }
+
+                Component {
+                    id: extra_sleep
+
+                    Row {
+                        spacing: 10
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.paddingLarge
+
+                        Label {
+                            id: log_sleepmode
+                            text: (action === "sleep_stop")? "Sleeping" : "Awake";
+                            color: Theme.secondaryColor
+                            height: Theme.itemSizeExtraSmall
+                            verticalAlignment: Text.AlignVCenter
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                        Label {
+                            id: log_duration
+                            text: mainwindow.babymodel.calcDuration( index )
+                            font.bold: true
+                            height: Theme.itemSizeExtraSmall
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
+
                 onPressAndHold: {
                     if (!listView.contextMenu) listView.contextMenu = contextMenuComponent.createObject(listView);
 
@@ -143,6 +232,45 @@ Page {
                     }
                 }
                 */
+
+                // Delete entry (only for first log item)
+                MenuItem {
+                    text: qsTr("Delete")
+                    visible: listView.model.isRemovable(currentIndex)? true : false
+                    onClicked: {
+                        remorse.execute("Deleting entry", function() {
+                            // Do nothing yet
+                            listView.model.removeLogEntry( currentIndex )
+                        });
+                    }
+                }
+            }
+        }
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Log Meal")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("LogMealDialog.qml"))
+                }
+            }
+            MenuItem {
+                text: getButtonTitle()
+                onClicked: {
+                    remorse.execute(getButtonTitle(), function() {
+                        mainwindow.babymodel.toggleSleep()   // Register start/stop
+                        text = getButtonTitle();             // Reset button timer
+                    });
+                }
+
+                function getButtonTitle()
+                {
+                    return mainwindow.babymodel.is_sleeping? qsTr("Stop sleep") : qsTr("Start sleep");
+                }
+            }
+
+            MenuLabel {
+                text: qsTr("Actions Menu")
             }
         }
 

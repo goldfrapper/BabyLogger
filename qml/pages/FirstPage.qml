@@ -37,175 +37,170 @@ Page {
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
         id: flickableThing
+
         anchors.fill: parent
+//        anchors.leftMargin: Theme.paddingLarge
+//        anchors.rightMargin: Theme.paddingLarge
+//        anchors.verticalCenter: parent.verticalCenter
+
+        // Tell SilicaFlickable the height of its content.
+        contentHeight: contentColumn.height
+
+        Component.onCompleted: {
+            console.log("SilicaFlickable", width, height, contentHeight);
+        }
 
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
-            MenuItem {
-                text: qsTr("Start sleep")
-                onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
-            }
+
             MenuItem {
                 text: qsTr("Show logs")
                 onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
             }
         }
 
-        // Tell SilicaFlickable the height of its content.
-        contentHeight: contentColumn.height
-
         // Place our content in a Column.  The PageHeader is always placed at the top
         // of the page, followed by our content.
         Column {
             id: contentColumn
-
-            width: page.width
-            height: parent.height
             spacing: Theme.paddingLarge
-            x: Theme.paddingLarge
-            anchors.verticalCenter: parent.verticalCenter
+
+            anchors.margins: Theme.paddingSmall
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            height: childrenRect.height
+
+            Component.onCompleted: {
+                console.log("Column",width, height, childrenRect.height);
+            }
 
             PageHeader {
                 title: qsTr("Baby Logger")
+
+                Component.onCompleted: {
+                    console.log("PageHeader",width, height);
+                }
             }
 
-            Row {
-                id: counter
-                spacing: 20
+            Rectangle {
+                border.color: "#ffffff"
+                color: Theme.rgba("black",0)
+                border.width: 3
+                radius: 10
 
-                Label {
-                    id: counter_clock
-                    text: "00:00:00"
-//                    color: Theme.secondaryHighlightColor
-                    font.pixelSize: Theme.fontSizeHuge
-//                    anchors.verticalCenter: parent.verticalCenter
-//                    anchors.margins: Theme.paddingLarge
+                height: Theme.itemSizeMedium
+                width: parent.width
 
-                    x: Theme.paddingLarge
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                anchors.horizontalCenter: parent.horizontalCenter
 
-                Label {
-                    id: counter_text
-                    text: "???"
-                    font.pixelSize: Theme.fontSizeMedium
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+//                Row {
+                    id: counter
+//                    spacing: 20
+//                    anchors.leftMargin: 20
 
-                Timer {
-                    id: counter_timer
-                    interval: 500
-                    running: true
-                    repeat: true
-                    onTriggered: counter.updateTimer()
-                }
+                    Component.onCompleted: {
+                        console.log("counter",width, height);
+                    }
 
-                function updateTimer()
-                {
-                    if(!logListing.model.count) return;
+                    Label {
+                        id: counter_clock
+                        text: "00:00:00"
+                        font.pixelSize: Theme.fontSizeHuge
+                    }
 
-                    // Update counter
-                    counter_clock.text = logListing.model.getCurrentTimer();
-                    counter_text.text = (logListing.model.is_sleeping? qsTr("sleeping...") : qsTr("awake..."));
+                    Label {
+                        id: counter_text
+                        text: "???"
+                        font.pixelSize: Theme.fontSizeMedium
+                    }
 
-                    // When awake for more then 1h30 alert user
-                    if(logListing.model.alertUser()) counter_clock.color = "red"
-                    else counter_clock.color = Theme.primaryColor
-                }
+                    Timer {
+                        id: counter_timer
+                        interval: 500
+                        running: true
+                        repeat: true
+                        onTriggered: parent.updateTimer()
+                    }
+
+                    function updateTimer()
+                    {
+                        if(!mainwindow.babymodel.count) return;
+
+                        // Update counter
+                        counter_clock.text = mainwindow.babymodel.getCurrentTimer();
+                        counter_text.text = (mainwindow.babymodel.is_sleeping? qsTr("sleeping...") : qsTr("awake..."));
+
+                        // When awake for more then 1h30 alert user
+                        if(mainwindow.babymodel.alertUser()) counter_clock.color = "red"
+                        else counter_clock.color = Theme.primaryColor
+                    }
+//                }
             }
 
             Row {
                 id: actionButtons
-                width: parent.width
+
                 height: Theme.itemSizeMedium
+                anchors.horizontalCenter: parent.horizontalCenter
+
+//                height: Theme.itemSizeMedium
+
+//                width: parent.width
+//                height: Theme.itemSizeMedium
+
+                Component.onCompleted: {
+                    console.log("actionButtons", width, height);
+                }
 
                 Button {
                     text: "???"
 
+                    function setButtonTitle()
+                    {
+                       text = mainwindow.babymodel.is_sleeping? qsTr("Stop sleep") : qsTr("Start sleep");
+                    }
 
-                   function setButtonTitle()
-                   {
-                       text = logListing.model.is_sleeping? qsTr("Stop sleep") : qsTr("Start sleep");
-                   }
+                    // Initiate button title at application start
+                    Component.onCompleted: setButtonTitle()
 
-                   // Initiate button title at application start
-                   Component.onCompleted: setButtonTitle()
-
-                   onClicked: {
-                       logListing.model.toggleSleep()       // Register start/stop
+                    onClicked: {
+                       mainwindow.babymodel.toggleSleep()       // Register start/stop
                        setButtonTitle();                    // Reset button timer
                        counter.updateTimer();               // Re-Initiate timer
-                   }
+                    }
+                }
+
+                Button {
+                    text: "Eating"
+//                    visible: mainwindow.babymodel.is_sleeping? false : true;
+//                    Component.onCompleted: {}
+//                    onClicked: {}
                 }
             }
 
-            // TODO Add date-sections (ListView.section)
-            SilicaListView {
-                id: logListing
+//            BackgroundItem {
+//                 anchors.bottom: parent.bottom
+//                 anchors.horizontalCenter: parent.horizontalCenter
 
-//                property alias model: babymodel
-                model: mainwindow.babymodel
-//                model: BabyModel {}
+//                 Label {
+//                     text: "test"
+//                 }
+//            }
 
-                height: model.count * Theme.itemSizeExtraSmall
-                anchors.top: actionButtons.bottom
-                spacing: 0
+//            CalendarView {
+//                id: logListing
 
-                Component.onCompleted: incrementCurrentIndex() // ?????
+////                width: parent.width
+////                height: 600
 
-                /**
-                 * TODO: Add Sections for dates
-                 */
-                delegate: BackgroundItem {
+//                anchors.top: actionButtons.bottom
 
-                    function calcDuration()
-                    {
-                        function pad(number) {
-                              return (number < 10)? '0' + number : number ;
-                        }
-
-                        // Make shure next entry exists
-                        if((index + 1) === logListing.model.count) return "?";
-
-                        var start = logListing.model.get(index + 1).date;
-                        var d = new Date();
-                        d.setTime((date - start));
-
-                        return pad(d.getUTCHours()) + "h" + pad(d.getUTCMinutes());
-                    }
-
-                    function formatTime(ts)
-                    {
-                        function pad(number) {
-                              return (number < 10)? '0' + number : number ;
-                        }
-                        var d = new Date();
-                        d.setTime(ts);
-                        return pad(d.getHours()) + "h" + pad(d.getMinutes());
-                    }
-
-                    function formatTimespan()
-                    {
-                        // Make shure next entry exists
-                        if((index + 1) === logListing.model.count) return "?";
-                        return "(" + formatTime(logListing.model.get(index + 1).date) + " - " + formatTime(date) + ")";
-                    }
-
-                    Row {
-                        spacing: 20
-                        Label {
-                            text: calcDuration()
-                        }
-                        Label {
-                            text: (action === "sleep_stop")? "Sleeping" : "Awake";
-                        }
-                        Label {
-                            text: formatTimespan()
-                        }
-                    }
-                }
-                VerticalScrollDecorator {}
-            }
+//                Component.onCompleted: {
+//                    console.log("CalendarView", contentHeight, height, contentColumn.height);
+//                }
+//                VerticalScrollDecorator {}
+//            }
         }
+        VerticalScrollDecorator {}
     }
 }

@@ -40,7 +40,7 @@ ApplicationWindow
     }
     default property alias babymodel: babymodel
 
-    initialPage: Component { FirstPage { } }
+    initialPage: Component { SecondPage {} }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 }
 

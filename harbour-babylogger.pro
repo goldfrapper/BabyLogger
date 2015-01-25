@@ -25,7 +25,11 @@ OTHER_FILES += qml/harbour-babylogger.qml \
     rpm/harbour-babylogger.yaml \
     translations/*.ts \
     harbour-babylogger.desktop \
-    qml/pages/BabyModel.qml
+    qml/pages/BabyModel.qml \
+    qml/pages/CalendarView.qml \
+    qml/pages/Overview.qml \
+    qml/pages/Counter.qml \
+    qml/pages/LogMealDialog.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

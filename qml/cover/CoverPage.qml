@@ -30,69 +30,27 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-//import "../pages" as BabyLogger
+import "../pages" // as BabyLogger
 
 CoverBackground {
     property bool active: (status === Cover.Active)
 //    property Item baby_model: BabyLogger.BabyModel {}
     anchors.fill: parent
 
-    Column {
-        anchors.centerIn: parent
+//    Column {
+//        anchors.centerIn: parent
 
         Label {
-            text: qsTr("Baby logger 0.2")
+            id: pageHeader
+            text: qsTr("Baby logger 0.4")
+            anchors.topMargin: Theme.paddingLarge
         }
 
-        Label {
-            id: counter_clock
-            font.pixelSize: Theme.fontSizeHuge
-            text: "00:00:00"
+        Counter {
+            id: counter
+            width: 100
+            anchors.top: pageHeader.bottom
         }
-
-        Label {
-            id: counter_text
-            text: "???"
-            font.pixelSize: Theme.fontSizeMedium
-        }
-
-        Timer {
-            interval: 500
-            running: active
-            repeat: true
-            onTriggered: {
-                counter_clock.text = mainwindow.babymodel.getCurrentTimer();
-                counter_text.text = (mainwindow.babymodel.is_sleeping? qsTr("sleeping...") : qsTr("awake..."));
-            }
-        }
-
-
-
-    }
-
-
-
-
-
-
-//    CoverActionList {
-//        CoverAction {
-//            iconSource: "image://theme/icon-l-clock"
-//        }
-//    }
-
-//    CoverActionList {
-//        id: coverAction
-
-//        CoverAction {
-//            iconSource: "image://theme/icon-l-clock"
-////            onTriggered: player.nextSong()
-//        }
-
-//        CoverAction {
-//            iconSource: "image://theme/icon-m-messaging-smiley-sleepy"
-////            iconSource: "image://theme/icon-m-messaging-smiley-happy"
-//        }
 //    }
 }
 

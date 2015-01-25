@@ -40,13 +40,46 @@ ListModel {
 
     property double last_action_time: 0
 
+    property bool is_development: false
+
+    property variant meal_types: [qsTr("Breast milk"),qsTr("Formula"),qsTr("Pureed food")]
+
     // Load previously saved data
     Component.onCompleted: loadData()
 
     // DB Helper method
     function _getDatabaseHandle()
     {
-          return LocalStorage.openDatabaseSync("babylogger", "log data", 10000);
+        try {
+            if(!is_development) {
+                var db = LocalStorage.openDatabaseSync("babylogger", "log data", 10000);
+            } else {
+                var db = LocalStorage.openDatabaseSync("babylogger_dev","","log data", 10000, function(db)
+                {
+                    db.transaction(function(tx)
+                    {
+                        try {
+                            var rs = tx.executeSql("
+                            CREATE TABLE IF NOT EXISTS actions(date INTEGER, name TEXT)
+                            CREATE TABLE IF NOT EXISTS meal (date INTEGER, type TEXT, qty INTEGER)");
+                        } catch(e) {
+                            // TODO show warning
+                            console.log("fuck", e);
+                        }
+                    });
+                    db.changeVersion("", "1.0");
+                });
+            }
+        } catch(e) {
+            if(e.code === SQLException.VERSION_ERR) {
+                console.log("Version error");
+
+                db.changeVersion("", "1.0");
+            }
+//                SQLException.DATABASE_ERR
+        }
+
+        return db;
     }
 
     // Start/Stop sleeping
@@ -69,10 +102,78 @@ ListModel {
         return is_sleeping;
     }
 
+    /**
+     * Log action
+     */
+    function logMeal( type, quantity )
+    {
+        var ts = Date.now();
+
+        // Validate
+        if(meal_types.indexOf(type) === -1 || parseInt(quantity) !== quantity) {
+            // TODO
+            console.log("Invalid input data");
+        }
+
+        // Store data
+        var db = _getDatabaseHandle();
+        db.transaction(function(tx)
+        {
+            try {
+                var rs = tx.executeSql("INSERT INTO meal VALUES(?,?,?)", [ts, type, quantity]);
+                if(!rs.rowsAffected) {
+                    console.log("failed", rs.rowsAffected);
+                } else {
+
+                    // Update model
+                    insert(0, {date: ts, action: "meal" });
+                }
+            } catch(e) {
+                // TODO show warning
+                console.log("fuck", e);
+            }
+        });
+    }
+
+    function getMealInfoString( date )
+    {
+        var str = "?";
+
+        // Validate
+        if( parseInt(date) !== date ) {
+            // TODO
+            console.log("Given date is not valid");
+            str = "Error";
+        }
+
+        var db = _getDatabaseHandle();
+        db.transaction(function(tx)
+        {
+            try {
+                var rs = tx.executeSql("SELECT * FROM meal WHERE date = ? LIMIT 1", [date]);
+                if(!rs.rows.length) {
+                    console.log("There was no data available for " + date);
+                    str = "Error";
+                } else {
+                    var row = rs.rows.item(0);
+                    str = row.type + " " + row.qty + " ml"
+                }
+            } catch(e) {
+                // TODO show warning
+                console.log("fuck", e);
+                str = "Error";
+            }
+
+            return str;
+        });
+
+        return str;
+    }
+
     // LocalStorage function
     function loadData()
     {
-        console.log("loading datamodel");
+        //console.log("loading datamodel");
 
         // Load previous data
         var db = _getDatabaseHandle();
@@ -80,21 +181,45 @@ ListModel {
         {
             // Create if not exists
             var out = tx.executeSql("CREATE TABLE IF NOT EXISTS actions(date INTEGER, name TEXT)");
+            var out = tx.executeSql("CREATE TABLE IF NOT EXISTS meal (date INTEGER, type TEXT, qty INTEGER)");
 
             // Clear current data
             if(count) clear();
 
             // Load data
-            var res = tx.executeSql("SELECT * FROM actions ORDER BY date DESC LIMIT 30");
+            var day = new Date();
+            var res = tx.executeSql("
+                SELECT * FROM actions
+                UNION
+                SELECT date, 'meal' FROM meal
+                ORDER BY date DESC LIMIT 300
+            ");
             for(var i = 0; i < res.rows.length; i++) {
-                append({date: res.rows.item(i).date, action: res.rows.item(i).name });
+                var row = res.rows.item(i);
+                day.setTime(row.date);
+                append({
+                       date: row.date,
+                       action: row.name,
+                       day: day.toISOString().substring(0,10)
+                });
             }
         });
 
-        // When data is available set last action as current mode
+        // When data is available set last "sleep" action as current mode
         if(count) {
-            last_action_time = get(0).date;
-            is_sleeping = (get(0).action === "sleep_stop")? false : true;
+            var last = getPrevSleepAction(-1);
+            if(last) {
+                last_action_time = last.date;
+                is_sleeping = (last.action === "sleep_stop")? false : true;
+            }
+
+//            var last = get(0);
+//            if(last.action === "sleep_stop" || last.action === "sleep_start") {
+//                is_sleeping = (last.action === "sleep_stop")? false : true;
+//                last_action_time = last.date;
+//            }
+//            last_action_time = get(0).date;
+//            is_sleeping = (get(0).action === "sleep_stop")? false : true;
         }
     }
 
@@ -119,6 +244,39 @@ ListModel {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Returns the previous "sleep_*" action
+     */
+    function getPrevSleepAction( index )
+    {
+        var idx = index || 0;
+        while( (idx++) < count ) {
+            var prev = get(idx);
+            if(!prev) { console.log("Faulty index " + index); return false;}
+            if(prev.action === "sleep_start" || prev.action === "sleep_stop") {
+                return prev
+            }
+        }
+        return false
+    }
+
+    /**
+     * Returns the duration of the given sleep/awake (index referencing end time)
+     */
+    function calcDuration( index )
+    {
+        if(index >= count) return "?";
+        var start = getPrevSleepAction(index);
+        if(!start) return "?";
+
+        function pad(number) {
+            return (number < 10)? '0' + number : number ;
+        }
+
+        var d = new Date( get(index).date - start.date );
+        return pad(d.getUTCHours()) + "h" + pad(d.getUTCMinutes());
     }
 
     /**
@@ -183,6 +341,62 @@ ListModel {
                 } else {
                     // Update model
                     setProperty(index, "date", new_timestamp );
+                    if(index === 0 && get(index).action.indexOf("sleep") === 0) {
+                        last_action_time = new_timestamp;
+                    }
+                }
+            } catch(e) {
+
+                // TODO show warning
+                console.log("fuck", e);
+            }
+        });
+    }
+
+    /**
+     * Verify if given entry can be deleted
+     * (At this point only last entry and meals)
+     */
+    function isRemovable( index )
+    {
+        var curr = get( index );
+        if(!curr) return false;
+        if(index === 0 || curr.action === "meal") return true;
+        else return false
+    }
+
+    /**
+     * Removes the given log entry
+     */
+    function removeLogEntry( index )
+    {
+        if(!isRemovable(index)) {
+            // TODO show warning
+            return false;
+        }
+
+        var curr = get(index);
+
+        var db = _getDatabaseHandle();
+        db.transaction(function(tx)
+        {
+            var table = (curr.action === "meal")? "meal" : "actions";
+            var sql = "DELETE FROM " + table + " WHERE date = ?";
+
+            try {
+
+                var rs = tx.executeSql(sql, [curr.date]);
+                if(!rs.rowsAffected) {
+                    // TODO show warning
+                    console.log("failed for index: " + index + ", date: " + curr.date);
+                } else {
+
+                    // Update model
+                    remove(index);
+                    if(index === 0) {
+                        var prev = getPrevSleepAction(-1);
+                        last_action_time = (prev)? prev.date : 0;
+                    }
                 }
             } catch(e) {
 
