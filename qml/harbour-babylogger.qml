@@ -42,7 +42,7 @@ ApplicationWindow
 
 //    Qt.application.name + " " + Qt.application.version
     property string appName: qsTr("Baby Logger");
-    property string appVersion: qsTr("0.4");
+    property string appVersion: qsTr("0.4.1");
 
     initialPage: Component { SecondPage {} }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")

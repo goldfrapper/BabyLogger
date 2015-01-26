@@ -69,7 +69,13 @@ Page {
         section.delegate: SectionHeader {
             text: section
             height: Theme.itemSizeExtraSmall
-            font.pixelSize: Theme.fontSizeLarge
+            font.pixelSize: Theme.fontSizeMedium
+
+//            Label {
+//                text: "00:00 total sleep"
+//                font.pixelSize: Theme.fontSizeTiny
+//                anchors.bottom: parent.bottom
+//            }
         }
 
         function formatDate(ts)
@@ -264,7 +270,6 @@ Page {
 
                 function setButtonTitle()
                 {
-                    console.log("Called from the sky...");
                     text = getButtonTitle();
                 }
 

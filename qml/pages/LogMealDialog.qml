@@ -11,8 +11,6 @@ Dialog {
     }
     
     onAccepted: {
-        console.log( d_select.currentItem.text, d_quantity.value );
-        
         mainwindow.babymodel.logMeal( d_select.currentItem.text, d_quantity.value)
     }
     

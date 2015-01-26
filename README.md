@@ -7,5 +7,6 @@ Changelog:
     - Added meal support
     - Delete support
     - Complete UI makeover
-0.5
-    - Many bugfixes
+0.4.1
+    - Many bugfixes (Fixed #11, Fixed #9, Fixed #6, Fixed #1)
+    - Added last meal timer issue #12

@@ -26,6 +26,10 @@
         <source>awake...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>since last meal</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
@@ -177,7 +181,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0.4</source>
+        <source>0.4.1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

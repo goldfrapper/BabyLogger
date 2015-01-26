@@ -8,14 +8,22 @@ ListModel {
     // Properties
     property bool is_sleeping: false
     property double last_action_time: 0
-    property bool is_development: true
+    property bool is_development: false
     property variant meal_types: [qsTr("Breast milk"),qsTr("Formula"),qsTr("Pureed food")]
+    property double last_meal_time: 0
 
     // Signals
     signal sleepModeChange( bool is_sleeping )
+    signal meal( int index )
 
-    // Load previously saved data
-    Component.onCompleted: loadData()
+    // OnComplete handling
+    Component.onCompleted:
+    {
+        loadData()                                      // Load previously saved data
+
+        babyModel.meal.connect(setMealCounters);        // Connect meal signal
+        setMealCounters()                               // Update meal counters
+    }
 
     // DB Helper method
     function _getDatabaseHandle()
@@ -84,8 +92,7 @@ ListModel {
         });
 
         updateCurrentSleepMode();
-//        last_action_time = ts;
-//        is_sleeping = !is_sleeping;
+
         return is_sleeping;
     }
 
@@ -113,8 +120,8 @@ ListModel {
                 } else {
 
                     // Update model
-//                    insert(0, {date: ts, action: "meal" });
                     insert(0, createLogObject(ts, "meal"));
+                    babyModel.meal(0);
                 }
             } catch(e) {
                 // TODO show warning
@@ -159,6 +166,30 @@ ListModel {
         return str;
     }
 
+    function getPrevMeal( index )
+    {
+        var idx = index || -1;
+        if(parseInt(idx) !== index || idx < -1 || idx >= count) {
+            console.log("Index Out of bounds " + index + "/" + count);
+        }
+
+        while(++idx < count) {
+            var curr = get(idx);
+            if(curr && curr.action === "meal") return curr;
+        }
+
+        return false;
+    }
+
+    /**
+     * Update the meal properties / counters
+     */
+    function setMealCounters()
+    {
+        var meal = babymodel.getPrevMeal(-1);
+        last_meal_time = meal.date;
+    }
+
     // LocalStorage function
     function loadData()
     {
@@ -198,6 +229,7 @@ ListModel {
         // When data is available set last "sleep" action as current mode
         if(count) {
             updateCurrentSleepMode();
+
 //            var last = getPrevSleepAction(-1);
 //            if(last) {
 //                last_action_time = last.date;
@@ -206,16 +238,18 @@ ListModel {
         }
     }
 
-    // Returns the current timer position in 00:00:00 format
-    function getCurrentTimer()
-    {
-        var d = new Date();
-        d.setTime(Date.now() - last_action_time);
-        function pad(number) {
-              return (number < 10)? '0' + number : number ;
-        }
-        return [pad(d.getUTCHours()), pad(d.getUTCMinutes()), pad(d.getUTCSeconds())].join(":");
-    }
+//    // Returns the current timer position in 00:00:00 format
+//    function getCurrentTimer()
+//    {
+////        var d = new Date();
+////        d.setTime(Date.now() - last_action_time);
+////        function pad(number) {
+////              return (number < 10)? '0' + number : number ;
+////        }
+////        return [pad(d.getUTCHours()), pad(d.getUTCMinutes()), pad(d.getUTCSeconds())].join(":");
+
+//        return formatDuration(last_action_time);
+//    }
 
     /**
      * Updates models sleep mode
@@ -311,12 +345,36 @@ ListModel {
         var start = getPrevSleepAction(index);
         if(!start) return "?";
 
-        function pad(number) {
-            return (number < 10)? '0' + number : number ;
-        }
+//        function pad(number) {
+//            return (number < 10)? '0' + number : number ;
+//        }
 
-        var d = new Date( curr.date - start.date );
-        return pad(d.getUTCHours()) + "h" + pad(d.getUTCMinutes());
+//        var d = new Date( curr.date - start.date );
+//        return pad(d.getUTCHours()) + "h" + pad(d.getUTCMinutes());
+
+        return formatDuration( start.date, "h", curr.date);
+    }
+
+    /**
+     * Small helper function to consistantly format durations
+     */
+    function formatDuration( starttime, format, endtime )
+    {
+        endtime = endtime || Date.now();
+        var date = new Date( endtime - starttime );
+
+        // Create duration array
+        var d = [date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()];
+        d.forEach(function(v,i,a) { a[i] = (v < 10)? '0' + v : v; });
+
+        switch(format) {
+            case "h":
+                return d[0] + "h" + d[1];
+            case "hm":
+                return d[0] + "h " + d[1] + "m";
+            default:
+                return d.join(":");
+        }
     }
 
     /**
@@ -394,6 +452,9 @@ ListModel {
 //                    setProperty(index, "day", date.toISOString().substring(0,10) );
 
                     updateCurrentSleepMode();
+
+                    if(curr.action === "meal") babyModel.meal(index);
+
 //                    if(index === 0 && get(index).action.indexOf("sleep") === 0) {
 //                        last_action_time = new_timestamp;
 //                        is_sleeping = (prev && prev.action === "sleep_stop")? false : true;
@@ -447,11 +508,8 @@ ListModel {
                     // Update model
                     remove(index);
                     updateCurrentSleepMode();
-//                    if(index === 0) {
-//                        var prev = getPrevSleepAction(-1);
-//                        last_action_time = (prev)? prev.date : 0;
-//                        is_sleeping = (prev && prev.action === "sleep_stop")? false : true;
-//                    }
+
+                    if(curr.action === "meal") babyModel.meal(index);
                 }
             } catch(e) {
 
