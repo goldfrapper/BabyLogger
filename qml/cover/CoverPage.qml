@@ -33,7 +33,7 @@ import Sailfish.Silica 1.0
 import "../pages" // as BabyLogger
 
 CoverBackground {
-    property bool active: (status === Cover.Active)
+//    property bool active: (status === Cover.Active)
 //    property Item baby_model: BabyLogger.BabyModel {}
     anchors.fill: parent
 
@@ -42,7 +42,7 @@ CoverBackground {
 
         Label {
             id: pageHeader
-            text: qsTr("Baby logger 0.4")
+            text: mainwindow.appName + " " + mainwindow.appVersion
             anchors.topMargin: Theme.paddingLarge
         }
 
@@ -50,6 +50,8 @@ CoverBackground {
             id: counter
             width: 100
             anchors.top: pageHeader.bottom
+
+            active: (status === Cover.Active)
         }
 //    }
 }

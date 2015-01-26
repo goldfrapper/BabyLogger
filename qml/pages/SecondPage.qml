@@ -39,15 +39,10 @@ Page {
 
     SilicaListView {
         id: listView
+        model: mainwindow.babymodel
+        anchors.fill: parent
 
         property Item contextMenu
-
-        model: mainwindow.babymodel
-
-        anchors.fill: parent
-//        header: PageHeader {
-//            title: qsTr("Baby logs")
-//        }
 
         header: Item {
             height: childrenRect.height
@@ -57,7 +52,7 @@ Page {
 
             PageHeader {
                 id: pageHeader
-                title: qsTr("Baby Logger")
+                title: mainwindow.appName + " " + mainwindow.appVersion
                 anchors.right: parent.right
             }
 
@@ -74,6 +69,7 @@ Page {
         section.delegate: SectionHeader {
             text: section
             height: Theme.itemSizeExtraSmall
+            font.pixelSize: Theme.fontSizeLarge
         }
 
         function formatDate(ts)
@@ -191,7 +187,6 @@ Page {
                     onClicked: {
 
                         var d = new Date(currentTimestamp);
-//                        d.setTime( currentTimestamp );
 
                         var orig = d.toString();
 
@@ -205,7 +200,7 @@ Page {
                             d.setHours( dialog.hour );
                             d.setMinutes( dialog.minute );
 
-                            remorse.execute("Updating time", function() {
+                            remorse.execute(qsTr("Updating time"), function() {
                                 listView.model.updateLogEntry( currentIndex, d.getTime() );
                             });
                         })
@@ -238,7 +233,7 @@ Page {
                     text: qsTr("Delete")
                     visible: listView.model.isRemovable(currentIndex)? true : false
                     onClicked: {
-                        remorse.execute("Deleting entry", function() {
+                        remorse.execute(qsTr("Deleting entry"), function() {
                             // Do nothing yet
                             listView.model.removeLogEntry( currentIndex )
                         });
@@ -257,10 +252,20 @@ Page {
             MenuItem {
                 text: getButtonTitle()
                 onClicked: {
-                    remorse.execute(getButtonTitle(), function() {
+                    remorse.execute(text, function() {
                         mainwindow.babymodel.toggleSleep()   // Register start/stop
-                        text = getButtonTitle();             // Reset button timer
                     });
+                }
+
+                Component.onCompleted: {
+                    // Register setButtonTitle method with sleepModeChange event
+                    mainwindow.babymodel.sleepModeChange.connect(setButtonTitle);
+                }
+
+                function setButtonTitle()
+                {
+                    console.log("Called from the sky...");
+                    text = getButtonTitle();
                 }
 
                 function getButtonTitle()

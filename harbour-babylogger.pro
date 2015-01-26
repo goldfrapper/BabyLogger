@@ -29,7 +29,8 @@ OTHER_FILES += qml/harbour-babylogger.qml \
     qml/pages/CalendarView.qml \
     qml/pages/Overview.qml \
     qml/pages/Counter.qml \
-    qml/pages/LogMealDialog.qml
+    qml/pages/LogMealDialog.qml\
+    README.md
 
 # to disable building translations every time, comment out the
 # following CONFIG line

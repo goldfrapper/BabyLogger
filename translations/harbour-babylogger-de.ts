@@ -33,10 +33,6 @@
         <source>My Cover</source>
         <translation type="vanished">Mein Cover</translation>
     </message>
-    <message>
-        <source>Baby logger 0.4</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>FirstPage</name>
@@ -150,10 +146,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Baby Logger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Log Meal</source>
         <translation type="unfinished"></translation>
     </message>
@@ -167,6 +159,25 @@
     </message>
     <message>
         <source>Actions Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updating time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>harbour-babylogger</name>
+    <message>
+        <source>Baby Logger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0.4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

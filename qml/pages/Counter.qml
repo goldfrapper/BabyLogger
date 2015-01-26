@@ -5,6 +5,8 @@ Item {
 //    property BabyModel babyModel
 //    height: childrenRect.height
 
+    property alias active: counter_timer.running
+
     Flow {
         width: parent.width
         spacing: 20

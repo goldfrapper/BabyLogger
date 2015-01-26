@@ -4,17 +4,17 @@
 <context>
     <name>BabyModel</name>
     <message>
-        <location filename="../qml/pages/BabyModel.qml" line="45"/>
+        <location filename="../qml/pages/BabyModel.qml" line="12"/>
         <source>Breast milk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/BabyModel.qml" line="45"/>
+        <location filename="../qml/pages/BabyModel.qml" line="12"/>
         <source>Formula</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/BabyModel.qml" line="45"/>
+        <location filename="../qml/pages/BabyModel.qml" line="12"/>
         <source>Pureed food</source>
         <translation type="unfinished"></translation>
     </message>
@@ -22,21 +22,13 @@
 <context>
     <name>Counter</name>
     <message>
-        <location filename="../qml/pages/Counter.qml" line="42"/>
+        <location filename="../qml/pages/Counter.qml" line="44"/>
         <source>sleeping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Counter.qml" line="42"/>
+        <location filename="../qml/pages/Counter.qml" line="44"/>
         <source>awake...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CoverPage</name>
-    <message>
-        <location filename="../qml/cover/CoverPage.qml" line="45"/>
-        <source>Baby logger 0.4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -142,38 +134,56 @@
 <context>
     <name>SecondPage</name>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="60"/>
-        <source>Baby Logger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SecondPage.qml" line="190"/>
+        <location filename="../qml/pages/SecondPage.qml" line="186"/>
         <source>Set time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="238"/>
+        <location filename="../qml/pages/SecondPage.qml" line="203"/>
+        <source>Updating time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SecondPage.qml" line="233"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="252"/>
+        <location filename="../qml/pages/SecondPage.qml" line="236"/>
+        <source>Deleting entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SecondPage.qml" line="247"/>
         <source>Log Meal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="268"/>
+        <location filename="../qml/pages/SecondPage.qml" line="272"/>
         <source>Stop sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="268"/>
+        <location filename="../qml/pages/SecondPage.qml" line="272"/>
         <source>Start sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="273"/>
+        <location filename="../qml/pages/SecondPage.qml" line="277"/>
         <source>Actions Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>harbour-babylogger</name>
+    <message>
+        <location filename="../qml/harbour-babylogger.qml" line="44"/>
+        <source>Baby Logger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/harbour-babylogger.qml" line="45"/>
+        <source>0.4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
