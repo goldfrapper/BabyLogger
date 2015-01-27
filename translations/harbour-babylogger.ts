@@ -136,6 +136,16 @@
 <context>
     <name>LogEntryItem</name>
     <message>
+        <location filename="../qml/pages/LogEntryItem.qml" line="64"/>
+        <source>Sleeping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LogEntryItem.qml" line="64"/>
+        <source>Awake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/LogEntryItem.qml" line="99"/>
         <source>Set time</source>
         <translation type="unfinished"></translation>

@@ -7,4 +7,6 @@ Name=Baby logger
 # translation example:
 # your app name in German locale (de)
 Name[de]=Baby logger
+# Finnish translation (fi)
+Name[fi]=Vauvan seuranta
 

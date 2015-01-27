@@ -35,7 +35,9 @@ OTHER_FILES += qml/harbour-babylogger.qml \
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
-# TRANSLATIONS += translations/harbour-babylogger-de.ts
+
+TRANSLATIONS += \
+    translations/harbour-babylogger-fi.ts
 
 RESOURCES += \
     resources.qrc

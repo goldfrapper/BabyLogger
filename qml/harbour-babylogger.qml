@@ -41,7 +41,7 @@ ApplicationWindow
     default property alias babymodel: babymodel
 
     property string appName: qsTr("Baby Logger");
-    property string appVersion: qsTr("0.4.2");
+    property string appVersion: qsTr("0.4.3");
 
     initialPage: Component { FirstPage {} }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")

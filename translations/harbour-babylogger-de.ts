@@ -103,6 +103,10 @@
         <source>Formula 120ml</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Overview</name>
@@ -171,6 +175,14 @@
     </message>
     <message>
         <source>Deleting entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sleeping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Awake</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

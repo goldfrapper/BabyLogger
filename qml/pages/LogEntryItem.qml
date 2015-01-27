@@ -61,7 +61,7 @@ BackgroundItem {
             
             Label {
                 id: log_sleepmode
-                text: (action === "sleep_stop")? "Sleeping" : "Awake";
+                text: (action === "sleep_stop")? qsTr("Sleeping") : qsTr("Awake");
                 color: Theme.secondaryColor
                 height: Theme.itemSizeExtraSmall
                 verticalAlignment: Text.AlignVCenter
