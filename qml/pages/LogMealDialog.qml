@@ -16,7 +16,7 @@ Dialog {
     
     DialogHeader {
         id: d_header
-        acceptText: "Add"
+        acceptText: qsTr("Add")
     }
     
     // Type
