@@ -260,7 +260,7 @@
         <translation>Vauvan seuranta</translation>
     </message>
     <message>
-        <source>0.4.2</source>
+        <source>0.4.3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
