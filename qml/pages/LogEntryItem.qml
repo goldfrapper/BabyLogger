@@ -79,8 +79,6 @@ BackgroundItem {
     
     onPressAndHold: {
 
-        console.log(view);
-
         if (!view.contextMenu) view.contextMenu = contextMenuComponent.createObject(view);
         
         // Setup the context menu

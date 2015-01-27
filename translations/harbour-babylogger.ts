@@ -4,52 +4,52 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="17"/>
+        <location filename="../qml/pages/AboutPage.qml" line="19"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="37"/>
+        <location filename="../qml/pages/AboutPage.qml" line="39"/>
         <source>Native SailfishOS application for monitoring/logging activity of a human baby.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="54"/>
+        <location filename="../qml/pages/AboutPage.qml" line="59"/>
         <source>Developer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="55"/>
-        <source>Goldfrapper</source>
+        <location filename="../qml/pages/AboutPage.qml" line="60"/>
+        <source>Goldfrapper &lt;goldfrapper@gmail.com&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="60"/>
+        <location filename="../qml/pages/AboutPage.qml" line="65"/>
         <source>GitHub Repository</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="61"/>
+        <location filename="../qml/pages/AboutPage.qml" line="66"/>
         <source>https://github.com/goldfrapper/BabyLogger/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="66"/>
+        <location filename="../qml/pages/AboutPage.qml" line="71"/>
         <source>Icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="67"/>
+        <location filename="../qml/pages/AboutPage.qml" line="72"/>
         <source>Icon based on the artwork of Yazmin Alanis (http://thenounproject.com/yalanis/)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="73"/>
+        <location filename="../qml/pages/AboutPage.qml" line="78"/>
         <source>Translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="80"/>
+        <location filename="../qml/pages/AboutPage.qml" line="85"/>
         <source>Licence</source>
         <translation type="unfinished"></translation>
     </message>
@@ -136,22 +136,22 @@
 <context>
     <name>LogEntryItem</name>
     <message>
-        <location filename="../qml/pages/LogEntryItem.qml" line="101"/>
+        <location filename="../qml/pages/LogEntryItem.qml" line="99"/>
         <source>Set time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogEntryItem.qml" line="118"/>
+        <location filename="../qml/pages/LogEntryItem.qml" line="116"/>
         <source>Updating time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogEntryItem.qml" line="148"/>
+        <location filename="../qml/pages/LogEntryItem.qml" line="146"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogEntryItem.qml" line="151"/>
+        <location filename="../qml/pages/LogEntryItem.qml" line="149"/>
         <source>Deleting entry</source>
         <translation type="unfinished"></translation>
     </message>

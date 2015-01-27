@@ -24,6 +24,5 @@ Item {
         verticalAlignment: Text.AlignVCenter
         width: parent.width
         anchors.top: label.bottom
-        anchors.bottomMargin: Theme.paddingLarge
     }
 }

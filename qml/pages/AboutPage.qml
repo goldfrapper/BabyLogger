@@ -6,11 +6,13 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
 
+
         Column {
             id: column
-            width: parent.width - (2 * Theme.paddingLarge)
+            width: parent.width
+            height: childrenRect.height
             anchors.leftMargin: Theme.paddingLarge
-            anchors.rightMargin: Theme.paddingLarge
+            anchors.bottomMargin: Theme.paddingLarge
             spacing: 20
 
             PageHeader {
@@ -40,19 +42,22 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }
-        }
+//        }
 
-        Column {
-            anchors.top: column.bottom
-            anchors.topMargin: Theme.paddingLarge
-            anchors.horizontalCenter: column.horizontalCenter
-            height: childrenRect.height
-            width: parent.width
+//        Column {
+//            anchors.top: column.bottom
+//            anchors.topMargin: Theme.paddingLarge
+//            anchors.horizontalCenter: column.horizontalCenter
+//            height: childrenRect.height
+
+//            width: parent.width
+//            spacing: 20
+//            anchors.leftMargin: Theme.paddingLarge
 
             Definition {
                 width: parent.width
                 labelText: qsTr("Developer")
-                contentText: qsTr("Goldfrapper")
+                contentText: qsTr("Goldfrapper <goldfrapper@gmail.com>")
             }
 
             Definition {
@@ -78,7 +83,7 @@ Page {
                 width: parent.width
                 anchors.topMargin: Theme.paddingSmall
                 labelText: qsTr("Licence")
-                contentText: "GNU GENERAL PUBLIC LICENSE Version 2"
+                contentText: "GPL Version 2"
             }
         }
 
