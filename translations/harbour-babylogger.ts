@@ -27,51 +27,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Counter.qml" line="65"/>
+        <location filename="../qml/pages/Counter.qml" line="61"/>
         <source>sleeping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Counter.qml" line="65"/>
+        <location filename="../qml/pages/Counter.qml" line="61"/>
         <source>awake...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FirstPage</name>
-    <message>
-        <location filename="../qml/pages/FirstPage.qml" line="57"/>
-        <source>Show logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/FirstPage.qml" line="78"/>
-        <source>Baby Logger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/FirstPage.qml" line="131"/>
-        <source>sleeping...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/FirstPage.qml" line="131"/>
-        <source>awake...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/FirstPage.qml" line="160"/>
-        <source>Stop sleep</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/FirstPage.qml" line="160"/>
-        <source>Start sleep</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LogMealDialog</name>
+    <message>
+        <location filename="../qml/pages/LogMealDialog.qml" line="19"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../qml/pages/LogMealDialog.qml" line="26"/>
         <source>Type</source>
@@ -83,98 +55,65 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="65"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="66"/>
         <source>Common choices:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="69"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="70"/>
         <source>Breast milk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="73"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="74"/>
         <source>Formula 60ml</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="77"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="78"/>
         <source>Formula 120ml</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Overview</name>
-    <message>
-        <location filename="../qml/pages/Overview.qml" line="18"/>
-        <source>Log Meal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Overview.qml" line="35"/>
-        <source>Stop sleep</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Overview.qml" line="35"/>
-        <source>Start sleep</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Overview.qml" line="39"/>
-        <source>Show logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Overview.qml" line="44"/>
-        <source>Actions Menu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Overview.qml" line="56"/>
-        <source>Baby Logger</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SecondPage</name>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="192"/>
+        <location filename="../qml/pages/SecondPage.qml" line="180"/>
         <source>Set time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="209"/>
+        <location filename="../qml/pages/SecondPage.qml" line="197"/>
         <source>Updating time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="239"/>
+        <location filename="../qml/pages/SecondPage.qml" line="227"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="242"/>
+        <location filename="../qml/pages/SecondPage.qml" line="230"/>
         <source>Deleting entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="253"/>
+        <location filename="../qml/pages/SecondPage.qml" line="241"/>
         <source>Log Meal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="278"/>
+        <location filename="../qml/pages/SecondPage.qml" line="266"/>
         <source>Stop sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="278"/>
+        <location filename="../qml/pages/SecondPage.qml" line="266"/>
         <source>Start sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="283"/>
+        <location filename="../qml/pages/SecondPage.qml" line="271"/>
         <source>Actions Menu</source>
         <translation type="unfinished"></translation>
     </message>

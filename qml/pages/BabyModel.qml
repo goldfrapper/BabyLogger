@@ -80,8 +80,6 @@ ListModel {
         var ts = d.getTime()
         var act = (is_sleeping? "sleep_stop" : "sleep_start");
 
-//        insert(0, {date: ts, action: act });
-
         insert(0, createLogObject( ts, act));
 
         // Store data in DB
@@ -193,8 +191,6 @@ ListModel {
     // LocalStorage function
     function loadData()
     {
-//        console.log("App version" + Qt.application.version);
-
         // Load previous data
         var db = _getDatabaseHandle();
         db.transaction(function(tx)
@@ -216,12 +212,6 @@ ListModel {
             ");
             for(var i = 0; i < res.rows.length; i++) {
                 var row = res.rows.item(i);
-//                day.setTime(row.date);
-//                append({
-//                       date: row.date,
-//                       action: row.name,
-//                       day: day.toISOString().substring(0,10)
-//                });
                 append(createLogObject( row.date, row.name));
             }
         });
@@ -229,27 +219,8 @@ ListModel {
         // When data is available set last "sleep" action as current mode
         if(count) {
             updateCurrentSleepMode();
-
-//            var last = getPrevSleepAction(-1);
-//            if(last) {
-//                last_action_time = last.date;
-//                is_sleeping = (last.action === "sleep_stop")? false : true;
-//            }
         }
     }
-
-//    // Returns the current timer position in 00:00:00 format
-//    function getCurrentTimer()
-//    {
-////        var d = new Date();
-////        d.setTime(Date.now() - last_action_time);
-////        function pad(number) {
-////              return (number < 10)? '0' + number : number ;
-////        }
-////        return [pad(d.getUTCHours()), pad(d.getUTCMinutes()), pad(d.getUTCSeconds())].join(":");
-
-//        return formatDuration(last_action_time);
-//    }
 
     /**
      * Updates models sleep mode
@@ -328,6 +299,8 @@ ListModel {
 
     /**
      * Returns the duration of the given sleep/awake (index referencing end time)
+     *
+     * TODO: This function's name is incorrect: is only calculates sleep duration
      */
     function calcDuration( index )
     {
@@ -344,13 +317,6 @@ ListModel {
 
         var start = getPrevSleepAction(index);
         if(!start) return "?";
-
-//        function pad(number) {
-//            return (number < 10)? '0' + number : number ;
-//        }
-
-//        var d = new Date( curr.date - start.date );
-//        return pad(d.getUTCHours()) + "h" + pad(d.getUTCMinutes());
 
         return formatDuration( start.date, "h", curr.date);
     }
@@ -376,28 +342,6 @@ ListModel {
                 return d.join(":");
         }
     }
-
-    /**
-     * Returns the last sleep/awake periods
-     * Format: [[ timestamp start, timestamp stop, timestamp duration],[...]]
-     */
-//    function getLastSleepPeriods()
-//    {
-
-//        var dataSet = [];
-//        var i = 0;
-
-//        dataSet[i] = {start:0, stop: get(i).date, state: ""};
-//        i++;
-
-//        while( i < count ) {
-//            dataSet[i].start = get(i).date;
-//            dataSet[i].state = (get(i).action === "sleep_start")? "sleeping" : "awake";
-//            dataSet[i++] = {start:0, stop: get(i).date, state: ""};
-//        }
-
-//        return dataSet;
-//    }
 
     /**
      * Updates the log entry for the given timestamp into new_timestamp
@@ -444,21 +388,13 @@ ListModel {
                 if(!rs.rowsAffected) {
                     console.log("failed", rs.rowsAffected);
                 } else {
+
                     // Update model
                     set( index, createLogObject(new_timestamp, curr.action));
-
-//                    var date = new Date(new_timestamp);
-//                    setProperty(index, "date", new_timestamp );
-//                    setProperty(index, "day", date.toISOString().substring(0,10) );
-
                     updateCurrentSleepMode();
 
+                    // Run meal signal
                     if(curr.action === "meal") babyModel.meal(index);
-
-//                    if(index === 0 && get(index).action.indexOf("sleep") === 0) {
-//                        last_action_time = new_timestamp;
-//                        is_sleeping = (prev && prev.action === "sleep_stop")? false : true;
-//                    }
                 }
             } catch(e) {
 
@@ -509,6 +445,7 @@ ListModel {
                     remove(index);
                     updateCurrentSleepMode();
 
+                    // Run meal signal
                     if(curr.action === "meal") babyModel.meal(index);
                 }
             } catch(e) {

@@ -2,11 +2,11 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Item {
-//    property BabyModel babyModel
-//    height: childrenRect.height
 
+    // Toggle whether the counter should run
     property alias active: counter_timer.running
 
+    // Sleep counter
     Flow {
         width: parent.width
         anchors.margins: Theme.paddingSmall
@@ -27,7 +27,7 @@ Item {
             height: Theme.itemSizeSmall
         }
 
-        // Move this to Counter?
+        // Meal counter
         Flow {
             id: meal_counter
             width: parent.width
@@ -47,27 +47,23 @@ Item {
         }
     }
 
+    // Timer for all counters
     Timer {
         id: counter_timer
         interval: 500
         running: true
         repeat: true
-        onTriggered: updateTimer()
-    }
+        onTriggered: {
+            if(!mainwindow.babymodel.count) return;
 
-    function updateTimer()
-    {
-        if(!mainwindow.babymodel.count) return;
-        
-        // Update counter
-        counter_clock.text = babymodel.formatDuration(babymodel.last_action_time);
-//        counter_clock.text = mainwindow.babymodel.getCurrentTimer();
-        counter_text.text = (mainwindow.babymodel.is_sleeping? qsTr("sleeping...") : qsTr("awake..."));
+            // Update counters
+            counter_clock.text = babymodel.formatDuration(babymodel.last_action_time);
+            counter_text.text = (mainwindow.babymodel.is_sleeping? qsTr("sleeping...") : qsTr("awake..."));
+            meal_counter.text = babymodel.formatDuration( babymodel.last_meal_time, "h" );
 
-        meal_counter.text = babymodel.formatDuration( babymodel.last_meal_time, "h" );
-        
-        // When awake for more then 1h30 alert user
-        if(mainwindow.babymodel.alertUser()) counter_clock.color = "red"
-        else counter_clock.color = Theme.primaryColor
+            // Verify if we need to alert user
+            // TODO: this should be done using a 'alert-user' or 'awake-for-to-long' signal
+            counter_clock.color = mainwindow.babymodel.alertUser()? "red" : Theme.primaryColor;
+        }
     }
 }

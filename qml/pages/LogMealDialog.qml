@@ -16,7 +16,7 @@ Dialog {
     
     DialogHeader {
         id: d_header
-        acceptText: "Add"
+        acceptText: qsTr("Add")
     }
     
     // Type
@@ -52,6 +52,7 @@ Dialog {
         valueText: value + " ml"
     }
     
+    // TODO: calculate these from usage statistics
     BackgroundItem {
         width: parent.width
         anchors.top: d_quantity.bottom

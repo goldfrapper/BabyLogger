@@ -31,176 +31,252 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+
 Page {
     id: page
 
-    // To enable PullDownMenu, place our content in a SilicaFlickable
-    SilicaFlickable {
-        id: flickableThing
+    RemorsePopup { id: remorse }
 
+    SilicaListView {
+        id: listView
+        model: mainwindow.babymodel
         anchors.fill: parent
-//        anchors.leftMargin: Theme.paddingLarge
-//        anchors.rightMargin: Theme.paddingLarge
-//        anchors.verticalCenter: parent.verticalCenter
 
-        // Tell SilicaFlickable the height of its content.
-        contentHeight: contentColumn.height
+        property Item contextMenu
 
-        Component.onCompleted: {
-            console.log("SilicaFlickable", width, height, contentHeight);
-        }
-
-        // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
-        PullDownMenu {
-
-            MenuItem {
-                text: qsTr("Show logs")
-                onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
-            }
-        }
-
-        // Place our content in a Column.  The PageHeader is always placed at the top
-        // of the page, followed by our content.
-        Column {
-            id: contentColumn
-            spacing: Theme.paddingLarge
-
-            anchors.margins: Theme.paddingSmall
-            anchors.horizontalCenter: parent.horizontalCenter
-
+        header: Item {
             height: childrenRect.height
+            width: parent.width
 
-            Component.onCompleted: {
-                console.log("Column",width, height, childrenRect.height);
-            }
+            anchors.bottomMargin: Theme.paddingLarge
 
             PageHeader {
-                title: qsTr("Baby Logger")
-
-                Component.onCompleted: {
-                    console.log("PageHeader",width, height);
-                }
+                id: pageHeader
+                title: mainwindow.appName + " " + mainwindow.appVersion
+                anchors.right: parent.right
             }
 
-            Rectangle {
-                border.color: "#ffffff"
-                color: Theme.rgba("black",0)
-                border.width: 3
-                radius: 10
-
-                height: Theme.itemSizeMedium
+            Counter {
+                id: counter
                 width: parent.width
-
-                anchors.horizontalCenter: parent.horizontalCenter
-
-//                Row {
-                    id: counter
-//                    spacing: 20
-//                    anchors.leftMargin: 20
-
-                    Component.onCompleted: {
-                        console.log("counter",width, height);
-                    }
-
-                    Label {
-                        id: counter_clock
-                        text: "00:00:00"
-                        font.pixelSize: Theme.fontSizeHuge
-                    }
-
-                    Label {
-                        id: counter_text
-                        text: "???"
-                        font.pixelSize: Theme.fontSizeMedium
-                    }
-
-                    Timer {
-                        id: counter_timer
-                        interval: 500
-                        running: true
-                        repeat: true
-                        onTriggered: parent.updateTimer()
-                    }
-
-                    function updateTimer()
-                    {
-                        if(!mainwindow.babymodel.count) return;
-
-                        // Update counter
-                        counter_clock.text = mainwindow.babymodel.getCurrentTimer();
-                        counter_text.text = (mainwindow.babymodel.is_sleeping? qsTr("sleeping...") : qsTr("awake..."));
-
-                        // When awake for more then 1h30 alert user
-                        if(mainwindow.babymodel.alertUser()) counter_clock.color = "red"
-                        else counter_clock.color = Theme.primaryColor
-                    }
-//                }
+                height: childrenRect.height
+                anchors.top: pageHeader.bottom
+                x: Theme.paddingLarge
             }
+        }
 
-            Row {
-                id: actionButtons
+        section.property: "day"
+        section.delegate: SectionHeader {
+            text: section
+            height: Theme.itemSizeExtraSmall
+            font.pixelSize: Theme.fontSizeMedium
 
-                height: Theme.itemSizeMedium
-                anchors.horizontalCenter: parent.horizontalCenter
-
-//                height: Theme.itemSizeMedium
-
-//                width: parent.width
-//                height: Theme.itemSizeMedium
-
-                Component.onCompleted: {
-                    console.log("actionButtons", width, height);
-                }
-
-                Button {
-                    text: "???"
-
-                    function setButtonTitle()
-                    {
-                       text = mainwindow.babymodel.is_sleeping? qsTr("Stop sleep") : qsTr("Start sleep");
-                    }
-
-                    // Initiate button title at application start
-                    Component.onCompleted: setButtonTitle()
-
-                    onClicked: {
-                       mainwindow.babymodel.toggleSleep()       // Register start/stop
-                       setButtonTitle();                    // Reset button timer
-                       counter.updateTimer();               // Re-Initiate timer
-                    }
-                }
-
-                Button {
-                    text: "Eating"
-//                    visible: mainwindow.babymodel.is_sleeping? false : true;
-//                    Component.onCompleted: {}
-//                    onClicked: {}
-                }
-            }
-
-//            BackgroundItem {
-//                 anchors.bottom: parent.bottom
-//                 anchors.horizontalCenter: parent.horizontalCenter
-
-//                 Label {
-//                     text: "test"
-//                 }
-//            }
-
-//            CalendarView {
-//                id: logListing
-
-////                width: parent.width
-////                height: 600
-
-//                anchors.top: actionButtons.bottom
-
-//                Component.onCompleted: {
-//                    console.log("CalendarView", contentHeight, height, contentColumn.height);
-//                }
-//                VerticalScrollDecorator {}
+//            Label {
+//                text: "00:00 total sleep"
+//                font.pixelSize: Theme.fontSizeTiny
+//                anchors.bottom: parent.bottom
 //            }
         }
+
+        delegate: Item {
+            id: myListItem
+            property bool menuOpen: listView.contextMenu != null && listView.contextMenu.parent === myListItem
+
+            width: ListView.view.width
+            height: menuOpen ? listView.contextMenu.height + contentItem.height : contentItem.height
+
+            BackgroundItem {
+                id: contentItem
+                width: parent.width
+                height: Theme.itemSizeExtraSmall
+
+                Label {
+                    id: log_startdate
+                    text: Qt.formatTime(new Date(date), "hh:mm");
+                    color: contentItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+
+                    x: Theme.paddingLarge
+                    height: Theme.itemSizeExtraSmall
+                    verticalAlignment: Text.AlignVCenter
+                }
+                Label {
+                    id: log_action
+                    text: " " + action
+                    color: contentItem.highlighted ? Theme.highlightColor : Theme.secondaryColor
+                    anchors.left: log_startdate.right
+                    height: Theme.itemSizeExtraSmall
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Component.onCompleted: {
+                    if(action === "meal") {
+                        extra_meal.createObject(contentItem);
+                    } else {
+                        extra_sleep.createObject(contentItem);
+                    }
+                }
+
+                Component {
+                    id: extra_meal
+
+                    Label {
+                        id: log_meal
+                        enabled: (action === "meal")? true : false;
+                        text: mainwindow.babymodel.getMealInfoString(date)
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.paddingLarge
+                        height: Theme.itemSizeExtraSmall
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: Theme.fontSizeSmall
+                    }
+                }
+
+                Component {
+                    id: extra_sleep
+
+                    Row {
+                        spacing: 10
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.paddingLarge
+
+                        Label {
+                            id: log_sleepmode
+                            text: (action === "sleep_stop")? "Sleeping" : "Awake";
+                            color: Theme.secondaryColor
+                            height: Theme.itemSizeExtraSmall
+                            verticalAlignment: Text.AlignVCenter
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                        Label {
+                            id: log_duration
+                            text: mainwindow.babymodel.calcDuration( index )
+                            font.bold: true
+                            height: Theme.itemSizeExtraSmall
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
+
+                onPressAndHold: {
+                    if (!listView.contextMenu) listView.contextMenu = contextMenuComponent.createObject(listView);
+
+                    // Setup the context menu
+                    listView.contextMenu.currentIndex = index
+                    listView.contextMenu.currentTimestamp = date;
+                    listView.contextMenu.show(myListItem);
+                }
+            }
+        }
+
+        Component {
+            id: contextMenuComponent
+
+            ContextMenu {
+
+                property double currentTimestamp: 0
+                property int currentIndex: 0
+
+                MenuItem {
+                    text: qsTr("Set time")
+                    onClicked: {
+
+                        var d = new Date(currentTimestamp);
+
+                        var orig = d.toString();
+
+                        var dialog = pageStack.push("Sailfish.Silica.TimePickerDialog", {
+                            hour: d.getHours(),
+                            minute: d.getMinutes(),
+                            hourMode: DateTime.DefaultHours
+                        })
+                        dialog.accepted.connect(function() {
+
+                            d.setHours( dialog.hour );
+                            d.setMinutes( dialog.minute );
+
+                            remorse.execute(qsTr("Updating time"), function() {
+                                listView.model.updateLogEntry( currentIndex, d.getTime() );
+                            });
+                        })
+                    }
+                }
+                /* Disabled setting date
+                MenuItem {
+                    text: qsTr("Set date")
+                    onClicked: {
+                        var d = new Date(currentTimestamp);
+                        var dialog = pageStack.push("Sailfish.Silica.DatePickerDialog", {
+                            date: d
+                        })
+                        dialog.accepted.connect(function() {
+
+                            d.setFullYear(dialog.year);
+                            d.setMonth(dialog.month - 1);
+                            d.setDate(dialog.day);
+
+                            remorse.execute("Updating date", function() {
+                                listView.model.updateLogEntry( currentIndex, d.getTime() );
+                            });
+                        })
+                    }
+                }
+                */
+
+                // Delete entry (only for first log item)
+                MenuItem {
+                    text: qsTr("Delete")
+                    visible: listView.model.isRemovable(currentIndex)? true : false
+                    onClicked: {
+                        remorse.execute(qsTr("Deleting entry"), function() {
+                            // Do nothing yet
+                            listView.model.removeLogEntry( currentIndex )
+                        });
+                    }
+                }
+            }
+        }
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Log Meal")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("LogMealDialog.qml"))
+                }
+            }
+            MenuItem {
+                text: getButtonTitle()
+                onClicked: {
+                    remorse.execute(text, function() {
+                        mainwindow.babymodel.toggleSleep()   // Register start/stop
+                    });
+                }
+
+                Component.onCompleted: {
+                    // Register setButtonTitle method with sleepModeChange event
+                    mainwindow.babymodel.sleepModeChange.connect(setButtonTitle);
+                }
+
+                function setButtonTitle()
+                {
+                    text = getButtonTitle();
+                }
+
+                function getButtonTitle()
+                {
+                    return mainwindow.babymodel.is_sleeping? qsTr("Stop sleep") : qsTr("Start sleep");
+                }
+            }
+
+            MenuLabel {
+                text: qsTr("Actions Menu")
+            }
+        }
+
         VerticalScrollDecorator {}
     }
 }
+
+
+
+
+
