@@ -139,42 +139,42 @@
 <context>
     <name>SecondPage</name>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="222"/>
+        <location filename="../qml/pages/SecondPage.qml" line="192"/>
         <source>Set time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="239"/>
+        <location filename="../qml/pages/SecondPage.qml" line="209"/>
         <source>Updating time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="269"/>
+        <location filename="../qml/pages/SecondPage.qml" line="239"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="272"/>
+        <location filename="../qml/pages/SecondPage.qml" line="242"/>
         <source>Deleting entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="283"/>
+        <location filename="../qml/pages/SecondPage.qml" line="253"/>
         <source>Log Meal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="308"/>
+        <location filename="../qml/pages/SecondPage.qml" line="278"/>
         <source>Stop sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="308"/>
+        <location filename="../qml/pages/SecondPage.qml" line="278"/>
         <source>Start sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SecondPage.qml" line="313"/>
+        <location filename="../qml/pages/SecondPage.qml" line="283"/>
         <source>Actions Menu</source>
         <translation type="unfinished"></translation>
     </message>

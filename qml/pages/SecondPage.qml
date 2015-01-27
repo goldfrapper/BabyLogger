@@ -104,7 +104,7 @@ Page {
 
                 Label {
                     id: log_startdate
-                    text: listView.formatDate(date)
+                    text: Qt.formatTime(new Date(date), "hh:mm");
                     color: contentItem.highlighted ? Theme.highlightColor : Theme.primaryColor
 
                     x: Theme.paddingLarge

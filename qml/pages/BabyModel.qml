@@ -69,7 +69,7 @@ ListModel {
         return {
             date: timestamp,
             action: action,
-            day: date.toISOString().substring(0,10)
+            day: Qt.formatDate(date)
         };
     }
 
@@ -308,8 +308,8 @@ ListModel {
      */
     function getNextSleepAction( index )
     {
-        if(index < 1 || index > count) {
-            console.log("Faulty index " + index);
+        if(index < 0 || index > count) {
+            console.log("Out of bounds " + index);
             return false;
         }
         var idx = index;
