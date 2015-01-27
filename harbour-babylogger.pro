@@ -27,9 +27,15 @@ OTHER_FILES += qml/harbour-babylogger.qml \
     qml/pages/Counter.qml \
     qml/pages/LogMealDialog.qml\
     README.md \
-    qml/pages/FirstPage.qml
+    qml/pages/FirstPage.qml \
+    qml/pages/LogEntryItem.qml \
+    qml/pages/AboutPage.qml \
+    qml/pages/Definition.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
 # TRANSLATIONS += translations/harbour-babylogger-de.ts
+
+RESOURCES += \
+    resources.qrc

@@ -10,6 +10,11 @@ ListModel {
     property double last_action_time: 0
     property bool is_development: false
     property variant meal_types: [qsTr("Breast milk"),qsTr("Formula"),qsTr("Pureed food")]
+    property variant action_labels: {
+        'sleep_stop': qsTr("Sleep stopped"),
+        'sleep_start': qsTr("Sleep started"),
+        'meal': qsTr("Meal")
+    }
     property double last_meal_time: 0
 
     // Signals
