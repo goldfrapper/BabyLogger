@@ -6,43 +6,56 @@ Item {
     // Toggle whether the counter should run
     property alias active: counter_timer.running
 
+    property int flowSpacing: 10
+    property real labelHeight: Theme.itemSizeExtraSmall
+    property real counterHeight: Theme.itemSizeExtraSmall
+
     // Sleep counter
     Flow {
         width: parent.width
-        anchors.margins: Theme.paddingSmall
-        spacing: 20
+        height: childrenRect.height
+//        anchors.margins: Theme.paddingSmall
+        spacing: flowSpacing
 
         Label {
             id: counter_clock
             text: "00:00:00"
+            color: Theme.primaryColor
             font.pixelSize: Theme.fontSizeHuge
-            height: Theme.itemSizeSmall
+            height: Theme.itemSizeExtraSmall
         }
 
         Label {
             id: counter_text
             text: "???"
+            color: Theme.secondaryColor
             font.pixelSize: Theme.fontSizeMedium
             verticalAlignment: Text.AlignVCenter
-            height: Theme.itemSizeSmall
+            height: labelHeight
         }
 
         // Meal counter
         Flow {
             id: meal_counter
             width: parent.width
-            spacing: 20
+            height: childrenRect.height
+            spacing: flowSpacing
 
             property string text: "00h 00m"
 
             Label {
                 text: meal_counter.text
-                color: Theme.secondaryColor
+                color: Theme.primaryColor
+                font.pixelSize: Theme.fontSizeLarge
+                height: labelHeight
+                verticalAlignment: Text.AlignVCenter
             }
 
             Label {
                 text: qsTr("since last meal")
                 color: Theme.secondaryColor
+                height: labelHeight
+                verticalAlignment: Text.AlignVCenter
             }
         }
     }
