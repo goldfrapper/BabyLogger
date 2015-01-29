@@ -213,7 +213,7 @@
     </message>
     <message>
         <location filename="../qml/harbour-babylogger.qml" line="44"/>
-        <source>0.4.2</source>
+        <source>0.4.3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
