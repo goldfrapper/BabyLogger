@@ -5,15 +5,15 @@
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <source>Native SailfishOS application for monitoring/logging activity of a human baby.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vauvan seurantaan tarkoitettu SailfishOS-sovellus</translation>
     </message>
     <message>
         <source>Developer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kehittäjä</translation>
     </message>
     <message>
         <source>Goldfrapper &lt;goldfrapper@gmail.com&gt;</source>
@@ -29,19 +29,19 @@
     </message>
     <message>
         <source>Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikoni</translation>
     </message>
     <message>
         <source>Icon based on the artwork of Yazmin Alanis (http://thenounproject.com/yalanis/)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikoni perustuu Yazmin Alanisin kuvamateriaaliin (http://thenounproject.com/yalanis/)</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>Käännökset</translation>
     </message>
     <message>
         <source>Licence</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisenssi</translation>
     </message>
 </context>
 <context>
@@ -60,15 +60,15 @@
     </message>
     <message>
         <source>Sleep stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Heräsi</translation>
     </message>
     <message>
         <source>Sleep started</source>
-        <translation type="unfinished"></translation>
+        <translation>Nukahti</translation>
     </message>
     <message>
         <source>Meal</source>
-        <translation type="unfinished"></translation>
+        <translation>Ateria</translation>
     </message>
 </context>
 <context>
@@ -89,22 +89,6 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Show logs</source>
-        <translation type="vanished">Näytä loki</translation>
-    </message>
-    <message>
-        <source>Baby Logger</source>
-        <translation type="vanished">Vauvan seuranta</translation>
-    </message>
-    <message>
-        <source>sleeping...</source>
-        <translation type="vanished">nukkuu...</translation>
-    </message>
-    <message>
-        <source>awake...</source>
-        <translation type="vanished">hereillä...</translation>
-    </message>
-    <message>
         <source>Stop sleep</source>
         <translation>Herääminen</translation>
     </message>
@@ -114,15 +98,15 @@
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <source>Log Meal</source>
-        <translation type="unfinished">Kirjaa ateria</translation>
+        <translation>Kirjaa ateria</translation>
     </message>
     <message>
         <source>Actions Menu</source>
-        <translation type="unfinished">Asetukset</translation>
+        <translation>Toiminnot</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -137,27 +121,27 @@
     <name>LogEntryItem</name>
     <message>
         <source>Sleeping</source>
-        <translation type="unfinished">Nukkunut</translation>
+        <translation>Nukkunut</translation>
     </message>
     <message>
         <source>Awake</source>
-        <translation type="unfinished">Hereillä</translation>
+        <translation>Hereillä</translation>
     </message>
     <message>
         <source>Set time</source>
-        <translation type="unfinished">Aseta aika</translation>
+        <translation>Aseta aika</translation>
     </message>
     <message>
         <source>Updating time</source>
-        <translation type="unfinished">Päivitetään aika</translation>
+        <translation>Päivitetään aika</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Poista</translation>
+        <translation>Poista</translation>
     </message>
     <message>
         <source>Deleting entry</source>
-        <translation type="unfinished">Poistetaan</translation>
+        <translation>Poistetaan</translation>
     </message>
 </context>
 <context>
