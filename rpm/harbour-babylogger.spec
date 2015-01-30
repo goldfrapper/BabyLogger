@@ -17,7 +17,7 @@ Version:    0.4.3
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+URL:        https://github.com/goldfrapper/BabyLogger
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-babylogger.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9

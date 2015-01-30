@@ -42,17 +42,6 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }
-//        }
-
-//        Column {
-//            anchors.top: column.bottom
-//            anchors.topMargin: Theme.paddingLarge
-//            anchors.horizontalCenter: column.horizontalCenter
-//            height: childrenRect.height
-
-//            width: parent.width
-//            spacing: 20
-//            anchors.leftMargin: Theme.paddingLarge
 
             Definition {
                 width: parent.width

@@ -124,6 +124,14 @@
         <source>Actions Menu</source>
         <translation type="unfinished">Asetukset</translation>
     </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have not yet logged anything. Start by selecting &apos;Start sleep&apos; or &apos;Log meal&apos; from the pull-down menu.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LogEntryItem</name>
@@ -254,13 +262,56 @@
     </message>
 </context>
 <context>
+    <name>SettingsPage</name>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear all logs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max. Awake Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max. &apos;Between meals&apos; Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alerts and Timers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Application Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value controls when the application should warn you that the baby has been awake for too long</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is the maximum time that should be allowed between meals. This greatly depends on the age of the baby</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will remove all saved data. Are you shure this is what you want? There is no easy way to undo this</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>harbour-babylogger</name>
     <message>
         <source>Baby Logger</source>
         <translation>Vauvan seuranta</translation>
     </message>
     <message>
-        <source>0.4.3</source>
+        <source>0.4.4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

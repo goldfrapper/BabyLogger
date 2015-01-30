@@ -8,7 +8,6 @@ ListModel {
     // Properties
     property bool is_sleeping: false
     property double last_action_time: 0
-    property bool is_development: false
     property variant meal_types: [qsTr("Breast milk"),qsTr("Formula"),qsTr("Pureed food")]
     property variant action_labels: {
         'sleep_stop': qsTr("Sleep stopped"),
@@ -18,8 +17,9 @@ ListModel {
     property double last_meal_time: 0
 
     // Signals
-    signal sleepModeChange( bool is_sleeping )
-    signal meal( int index )
+    signal sleepModeChange( bool is_sleeping )      // Sleep mode changed
+    signal meal( int index )                        // A meal is added/changed/deleted
+    signal allDataCleared()                         // All data is cleared
 
     // OnComplete handling
     Component.onCompleted:
@@ -34,7 +34,7 @@ ListModel {
     function _getDatabaseHandle()
     {
         try {
-            if(!is_development) {
+            if(!mainwindow.is_development) {
                 var db = LocalStorage.openDatabaseSync("babylogger", "log data", 10000);
             } else {
                 var db = LocalStorage.openDatabaseSync("babylogger_dev","","log data", 10000, function(db)
@@ -44,7 +44,8 @@ ListModel {
                         try {
                             var rs = tx.executeSql("
                             CREATE TABLE IF NOT EXISTS actions(date INTEGER, name TEXT)
-                            CREATE TABLE IF NOT EXISTS meal (date INTEGER, type TEXT, qty INTEGER)");
+                            CREATE TABLE IF NOT EXISTS meal (date INTEGER, type TEXT, qty INTEGER)
+                            CREATE TABLE IF NOT EXISTS setting (key TEXT PRIMARY KEY, value TEXT)");
                         } catch(e) {
                             // TODO show warning
                             console.log("fuck", e);
@@ -63,6 +64,36 @@ ListModel {
         }
 
         return db;
+    }
+
+    /**
+     * Clear all logged data (TODO: For a specific baby)
+     */
+    function clearAllData( baby )
+    {
+        var db = _getDatabaseHandle();
+        db.transaction(function(tx)
+        {
+            try {
+                var rs = tx.executeSql("DELETE FROM meal");
+                var rs1 = tx.executeSql("DELETE FROM actions");
+                if(count && !rs.rowsAffected) {
+                    console.log("failed or no data", rs.rowsAffected);
+                } else {
+
+                    // Update model
+                    clear();
+                    updateCurrentSleepMode();
+                    babyModel.meal(0);
+
+                    // Trigger signal
+                    babyModel.allDataCleared();
+                }
+            } catch(e) {
+                // TODO show warning
+                console.log("fuck", e);
+            }
+        });
     }
 
     /**
@@ -190,7 +221,7 @@ ListModel {
     function setMealCounters()
     {
         var meal = babymodel.getPrevMeal(-1);
-        last_meal_time = meal.date;
+        last_meal_time = (meal && meal.date)? meal.date : 0;
     }
 
     // LocalStorage function
@@ -203,6 +234,7 @@ ListModel {
             // Create if not exists
             var out = tx.executeSql("CREATE TABLE IF NOT EXISTS actions(date INTEGER, name TEXT)");
             var out = tx.executeSql("CREATE TABLE IF NOT EXISTS meal (date INTEGER, type TEXT, qty INTEGER)");
+            var out = tx.executeSql("CREATE TABLE IF NOT EXISTS setting (key TEXT PRIMARY KEY, value TEXT)");
 
             // Clear current data
             if(count) clear();
@@ -250,7 +282,9 @@ ListModel {
      */
     function alertUser()
     {
-        if(!is_sleeping && (Date.now() - last_action_time) > ((90*60)*1000)) {
+        var d = new Date("1970-01-01T" + settings.max_awake_time + ":00");
+
+        if(!is_sleeping && (Date.now() - last_action_time) > d.getTime()) {
             return true;
         } else {
             return false;
@@ -432,13 +466,13 @@ ListModel {
         }
 
         var curr = get(index);
+        var action = curr.action;       // We need to set this because curr-object will change after remove()
 
         var db = _getDatabaseHandle();
         db.transaction(function(tx)
         {
             var table = (curr.action === "meal")? "meal" : "actions";
             var sql = "DELETE FROM " + table + " WHERE date = ?";
-
             try {
                 var rs = tx.executeSql(sql, [curr.date]);
                 if(!rs.rowsAffected) {
@@ -447,11 +481,10 @@ ListModel {
                 } else {
 
                     // Update model
-                    remove(index);
-                    updateCurrentSleepMode();
+                    remove(index);                                       // Removes entry from model
+                    updateCurrentSleepMode();                            // Update sleep timers, etc...
 
-                    // Run meal signal
-                    if(curr.action === "meal") babyModel.meal(index);
+                    if(action === "meal") babyModel.meal(index);    // Run meal signal
                 }
             } catch(e) {
 

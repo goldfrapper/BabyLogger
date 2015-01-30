@@ -8,7 +8,12 @@ BackgroundItem {
     height: Theme.itemSizeExtraSmall
 
     property Item view
-    
+
+//    Component {
+//        id: component_remorse_item
+//        RemorseItem {}
+//    }
+
     Label {
         id: log_startdate
         text: Qt.formatTime(new Date(date), "hh:mm");
@@ -79,8 +84,14 @@ BackgroundItem {
     
     onPressAndHold: {
 
-        if (!view.contextMenu) view.contextMenu = contextMenuComponent.createObject(view);
-        
+        if(!view.contextMenu) view.contextMenu = contextMenuComponent.createObject(view);
+
+        // Fixes issue #24 with 'TypeError: Property 'show' of object ContextMenu_QMLTYPE_* is not a function'
+        // NOTE THIS IS A WORKAROUND : this does *not* solve the real problem
+        if(typeof view.contextMenu.show === "undefined") {
+            view.contextMenu = contextMenuComponent.createObject(view);
+        }
+
         // Setup the context menu
         view.contextMenu.currentIndex = index
         view.contextMenu.currentTimestamp = date;
@@ -150,6 +161,11 @@ BackgroundItem {
                         // Do nothing yet
                         view.model.removeLogEntry( currentIndex )
                     });
+
+//                    var remorse = component_remorse_item.createObject(myListItem);
+//                    remorse.execute(myListItem, qsTr("Deleting entry"), function() {
+//                        view.model.removeLogEntry( currentIndex )
+//                    });
                 }
             }
         }

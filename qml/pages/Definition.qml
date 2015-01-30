@@ -14,6 +14,7 @@ Item {
         verticalAlignment: Text.AlignVCenter
         width: parent.width
         color: Theme.secondaryHighlightColor
+        font.pixelSize: Theme.fontSizeSmall
     }
     
     Label {
@@ -24,5 +25,6 @@ Item {
         verticalAlignment: Text.AlignVCenter
         width: parent.width
         anchors.top: label.bottom
+        font.pixelSize: Theme.fontSizeSmall
     }
 }

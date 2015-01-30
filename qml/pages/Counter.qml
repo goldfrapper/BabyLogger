@@ -1,5 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtFeedback 5.0
+
+//import org.nemomobile.dbus 2.0
 
 Item {
 
@@ -9,6 +12,34 @@ Item {
     property int flowSpacing: 10
     property real labelHeight: Theme.itemSizeExtraSmall
     property real counterHeight: Theme.itemSizeExtraSmall
+
+    /**
+     * Reset all counters
+     */
+    function reset()
+    {
+        counter_clock.text = "00:00:00";
+        counter_text.text = "unknown";
+        meal_counter.text = "00h 00m";
+    }
+
+    Component.onCompleted: {
+
+        // When all data is erased, reset counters
+        babymodel.allDataCleared.connect(reset);
+
+        // When last meal time is reset
+        babymodel.meal.connect(function()
+        {
+            if(babymodel.last_meal_time === 0) reset();
+        });
+
+        // When last action time is reset
+        babymodel.sleepModeChange.connect(function()
+        {
+            if(babymodel.last_action_time === 0) reset();
+        });
+    }
 
     // Sleep counter
     Flow {
@@ -27,7 +58,7 @@ Item {
 
         Label {
             id: counter_text
-            text: "???"
+            text: "unknown"
             color: Theme.secondaryColor
             font.pixelSize: Theme.fontSizeMedium
             verticalAlignment: Text.AlignVCenter
@@ -67,16 +98,40 @@ Item {
         running: true
         repeat: true
         onTriggered: {
-            if(!mainwindow.babymodel.count) return;
+//            console.count("counter");
+//            if(!mainwindow.babymodel.count) {
+//                reset();
+//                return;
+//            }
 
             // Update counters
-            counter_clock.text = babymodel.formatDuration(babymodel.last_action_time);
-            counter_text.text = (mainwindow.babymodel.is_sleeping? qsTr("sleeping...") : qsTr("awake..."));
-            meal_counter.text = babymodel.formatDuration( babymodel.last_meal_time, "h" );
+            if(babymodel.last_action_time !== 0) {
+                counter_clock.text = babymodel.formatDuration(babymodel.last_action_time);
+                counter_text.text = (mainwindow.babymodel.is_sleeping? qsTr("sleeping...") : qsTr("awake..."));
 
-            // Verify if we need to alert user
-            // TODO: this should be done using a 'alert-user' or 'awake-for-to-long' signal
-            counter_clock.color = mainwindow.babymodel.alertUser()? "red" : Theme.primaryColor;
+                // Verify if we need to alert user
+                // TODO: this should be done using a 'alert-user' or 'awake-for-to-long' signal
+                counter_clock.color = mainwindow.babymodel.alertUser()? "red" : Theme.primaryColor;
+                // notificator.running = mainwindow.babymodel.alertUser()
+            }
+            if(babymodel.last_meal_time !== 0) {
+                meal_counter.text = babymodel.formatDuration( babymodel.last_meal_time, "hm" );
+            }
+        }
+    }
+
+    ThemeEffect {
+        id: longBuzz
+        effect: ThemeEffect.PressStrong
+    }
+
+    Timer {
+        id: notificator
+        interval: (20 * 1000)
+        running: false
+        repeat: true
+        onTriggered: {
+            longBuzz.play()
         }
     }
 }

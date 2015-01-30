@@ -1,6 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+//import org.nemomobile.dbus 2.0
+//import org.freedesktop.contextkit 1.0
+
 
 Page {
     id: page
@@ -15,9 +18,9 @@ Page {
         property Item contextMenu
 
         header: Item {
+            id: headerContent
             height: childrenRect.height
             width: parent.width
-
             anchors.bottomMargin: Theme.paddingLarge
 
             PageHeader {
@@ -32,6 +35,34 @@ Page {
                 height: childrenRect.height
                 anchors.top: pageHeader.bottom
                 x: Theme.paddingLarge
+
+                // Only activate when application/page is active and logs are available
+                active: (babymodel.count !== 0) && (status === PageStatus.Active && applicationActive)
+            }
+
+            // Extra documentation / inline help when no data is available/logged
+            Component {
+                id: no_logs_warning
+                Label {
+                    text: qsTr("You have not yet logged anything. Start by selecting 'Start sleep' or 'Log meal' from the pull-down menu.")
+                    wrapMode: Text.WordWrap
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.secondaryColor
+                    anchors.topMargin: 2 * Theme.paddingLarge
+                }
+            }
+            Loader {
+                id: no_logs_warning_loader
+                sourceComponent: no_logs_warning
+                active: (babymodel.count === 0)
+
+                onActiveChanged: {
+                    if(!active) height = 0;     // Fixes issue with height remaining after deactivation
+                }
+
+                x: Theme.paddingLarge
+                width: parent.width - (2* Theme.paddingLarge)
+                anchors.top: counter.bottom
             }
         }
 
@@ -66,6 +97,12 @@ Page {
                 text: qsTr("About")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+                }
+            }
+            MenuItem {
+                text: qsTr("Settings")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
                 }
             }
             MenuItem {

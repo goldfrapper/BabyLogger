@@ -18,7 +18,8 @@ CoverBackground {
 
     Counter {
         id: counter
-        active: (status === Cover.Active)
+
+        active: (babymodel.count !== 0) && (status === Cover.Activating || status === Cover.Active)
 
         flowSpacing: 0
         labelHeight: 50
