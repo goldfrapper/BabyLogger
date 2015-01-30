@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import QtFeedback 5.0
+//import QtFeedback 5.0
 
 //import org.nemomobile.dbus 2.0
 
@@ -73,10 +73,11 @@ Item {
             spacing: flowSpacing
 
             property string text: "00h 00m"
+            property string color: Theme.primaryColor
 
             Label {
                 text: meal_counter.text
-                color: Theme.primaryColor
+                color: meal_counter.color
                 font.pixelSize: Theme.fontSizeLarge
                 height: labelHeight
                 verticalAlignment: Text.AlignVCenter
@@ -116,22 +117,26 @@ Item {
             }
             if(babymodel.last_meal_time !== 0) {
                 meal_counter.text = babymodel.formatDuration( babymodel.last_meal_time, "hm" );
+
+                // Check for alarm
+                var d = new Date("1970-01-01T" + settings.max_meal_time + ":00");
+                meal_counter.color = ((Date.now() - babymodel.last_meal_time) > d.getTime())? "red" : Theme.primaryColor;
             }
         }
     }
 
-    ThemeEffect {
-        id: longBuzz
-        effect: ThemeEffect.PressStrong
-    }
+//    ThemeEffect {
+//        id: longBuzz
+//        effect: ThemeEffect.PressStrong
+//    }
 
-    Timer {
-        id: notificator
-        interval: (20 * 1000)
-        running: false
-        repeat: true
-        onTriggered: {
-            longBuzz.play()
-        }
-    }
+//    Timer {
+//        id: notificator
+//        interval: (20 * 1000)
+//        running: false
+//        repeat: true
+//        onTriggered: {
+//            longBuzz.play()
+//        }
+//    }
 }

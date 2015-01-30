@@ -3,8 +3,8 @@ import Sailfish.Silica 1.0
 
 QtObject {
     id: settings
-    property string max_awake_time: "01:30:00"
-    property string max_meal_time: "04:00:00"
+    property string max_awake_time: "01:30"
+    property string max_meal_time: "04:00"
     
     Component.onCompleted:
     {

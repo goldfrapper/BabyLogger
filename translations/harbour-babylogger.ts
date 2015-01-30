@@ -90,17 +90,17 @@
 <context>
     <name>Counter</name>
     <message>
-        <location filename="../qml/pages/Counter.qml" line="86"/>
+        <location filename="../qml/pages/Counter.qml" line="87"/>
         <source>since last meal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Counter.qml" line="110"/>
+        <location filename="../qml/pages/Counter.qml" line="111"/>
         <source>sleeping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Counter.qml" line="110"/>
+        <location filename="../qml/pages/Counter.qml" line="111"/>
         <source>awake...</source>
         <translation type="unfinished"></translation>
     </message>
