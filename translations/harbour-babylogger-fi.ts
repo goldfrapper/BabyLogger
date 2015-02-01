@@ -110,11 +110,11 @@
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <source>You have not yet logged anything. Start by selecting &apos;Start sleep&apos; or &apos;Log meal&apos; from the pull-down menu.</source>
-        <translation type="unfinished"></translation>
+        <translation>Et ole vielä kirjannut mitään. Aloita valitsemalla alasvetovalikosta &apos;Nukahtaminen&apos; tai &apos;Kirjaa ateria&apos;.</translation>
     </message>
 </context>
 <context>
@@ -176,116 +176,46 @@
     </message>
 </context>
 <context>
-    <name>Overview</name>
-    <message>
-        <source>Show logs</source>
-        <translation type="vanished">Näytä loki</translation>
-    </message>
-    <message>
-        <source>Stop sleep</source>
-        <translation type="vanished">Herääminen</translation>
-    </message>
-    <message>
-        <source>Start sleep</source>
-        <translation type="vanished">Nukahtaminen</translation>
-    </message>
-    <message>
-        <source>Baby Logger</source>
-        <translation type="vanished">Vauvan seuranta</translation>
-    </message>
-    <message>
-        <source>Log Meal</source>
-        <translation type="vanished">Kirjaa ateria</translation>
-    </message>
-    <message>
-        <source>Actions Menu</source>
-        <translation type="vanished">Asetukset</translation>
-    </message>
-</context>
-<context>
-    <name>SecondPage</name>
-    <message>
-        <source>Set time</source>
-        <translation type="vanished">Aseta aika</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="vanished">Poista</translation>
-    </message>
-    <message>
-        <source>Log Meal</source>
-        <translation type="vanished">Kirjaa ateria</translation>
-    </message>
-    <message>
-        <source>Stop sleep</source>
-        <translation type="vanished">Herääminen</translation>
-    </message>
-    <message>
-        <source>Start sleep</source>
-        <translation type="vanished">Nukahtaminen</translation>
-    </message>
-    <message>
-        <source>Actions Menu</source>
-        <translation type="vanished">Asetukset</translation>
-    </message>
-    <message>
-        <source>Updating time</source>
-        <translation type="vanished">Päivitetään aika</translation>
-    </message>
-    <message>
-        <source>Deleting entry</source>
-        <translation type="vanished">Poistetaan</translation>
-    </message>
-    <message>
-        <source>Awake</source>
-        <translation type="vanished">Hereillä</translation>
-    </message>
-    <message>
-        <source>Sleeping</source>
-        <translation type="vanished">Nukkunut</translation>
-    </message>
-</context>
-<context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <source>Clear all logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista kaikki kirjaukset</translation>
     </message>
     <message>
         <source>Max. Awake Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksimi hereilläoloaika</translation>
     </message>
     <message>
         <source>Max. &apos;Between meals&apos; Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksimi ateriaväli</translation>
     </message>
     <message>
         <source>Alerts and Timers</source>
-        <translation type="unfinished"></translation>
+        <translation>Hälytykset ja ajastimet</translation>
     </message>
     <message>
         <source>Application Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Sovelluksen tyhjennys</translation>
     </message>
     <message>
         <source>This value controls when the application should warn you that the baby has been awake for too long</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämän aika-arvoasetuksen perusteella sovellus varoittaa, milloin vauva on ollut hereillä liian pitkään.</translation>
     </message>
     <message>
         <source>This is the maximum time that should be allowed between meals. This greatly depends on the age of the baby</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä on ateriavälin maksimiaika-asetus. Tämä riippuu voimakkaasti vauvan iästä.</translation>
     </message>
     <message>
         <source>Reset Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyhjennä sovellus</translation>
     </message>
     <message>
         <source>This will remove all saved data. Are you shure this is what you want? There is no easy way to undo this</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä poistaa kaikki tallentamasi tiedot. Oletko varma, että haluat tätä? Tietojen palauttamiseen ei ole helppoa tapaa.</translation>
     </message>
 </context>
 <context>
