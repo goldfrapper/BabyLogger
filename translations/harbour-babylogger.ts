@@ -194,7 +194,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="94"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="65"/>
         <source>Common choices:</source>
         <translation type="unfinished"></translation>
     </message>

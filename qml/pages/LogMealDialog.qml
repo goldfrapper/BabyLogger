@@ -51,35 +51,6 @@ Dialog {
         stepSize: 10
         valueText: value + " ml"
     }
-    
-    // TODO: calculate these from usage statistics
-//    BackgroundItem {
-//        width: parent.width
-//        anchors.top: d_quantity.bottom
-//        anchors.topMargin: Theme.paddingLarge
-
-//        Column {
-//            x: Theme.paddingLarge
-//            width: parent.width
-
-//            Label {
-//                text: qsTr("Common choices:")
-//            }
-
-//            Button {
-//                text: qsTr("Breast milk")
-//                onClicked: logMealDialog.setSelection(0,0)
-//            }
-//            Button {
-//                text: qsTr("Formula 60ml")
-//                onClicked: logMealDialog.setSelection(1,60)
-//            }
-//            Button {
-//                text: qsTr("Formula 120ml")
-//                onClicked: logMealDialog.setSelection(1,120)
-//            }
-//        }
-//    }
 
     BackgroundItem {
         width: parent.width
@@ -100,8 +71,13 @@ Dialog {
                     text: modelData.type + " " + modelData.qty + "ml"
                     anchors.horizontalCenter: parent.horizontalCenter
                     onClicked: {
+
+                        // Set selection
                         var typeId = mainwindow.babymodel.meal_types.indexOf(modelData.type)
                         logMealDialog.setSelection(typeId, modelData.qty);
+
+                        // Accept dialog
+                        logMealDialog.accept();
                     }
                 }
             }
