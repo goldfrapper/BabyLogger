@@ -224,6 +224,39 @@ ListModel {
         last_meal_time = (meal && meal.date)? meal.date : 0;
     }
 
+    /**
+     * Returns the 3 most used meals.
+     */
+    function getTopMeals()
+    {
+        var topMeals = []
+        var db = _getDatabaseHandle();
+        db.transaction(function(tx)
+        {
+            try {
+                var sql = "SELECT * FROM meal WHERE datetime(date/1000, 'unixepoch') > datetime('now', '-3 day')";
+                sql = sql + " GROUP BY type, qty ORDER BY count(*) LIMIT 3"
+                var rs = tx.executeSql(sql);
+                if(!rs.rows.length) {
+                    // we choose at will
+                    topMeals.push({type: "Breast milk", qty: "0"});
+                    topMeals.push({type: "Formula", qty: "60"});
+                    topMeals.push({type: "Formula", qty: "120"});
+                } else {
+                    for(var i = 0; i < rs.rows.length; i++) {
+                        var row = rs.rows.item(i);
+                        topMeals.push({type: row.type, qty: row.qty});
+                    }
+                }
+            } catch(e) {
+                // TODO show warning
+                console.log("fuck", e);
+            }
+            return topMeals;
+        });
+        return topMeals;
+    }
+
     // LocalStorage function
     function loadData()
     {

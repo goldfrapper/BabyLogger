@@ -160,15 +160,15 @@
     </message>
     <message>
         <source>Breast milk</source>
-        <translation>Äidinmaito</translation>
+        <translation type="vanished">Äidinmaito</translation>
     </message>
     <message>
         <source>Formula 60ml</source>
-        <translation>Korvike 60ml</translation>
+        <translation type="vanished">Korvike 60ml</translation>
     </message>
     <message>
         <source>Formula 120ml</source>
-        <translation>Korvike 120ml</translation>
+        <translation type="vanished">Korvike 120ml</translation>
     </message>
     <message>
         <source>Add</source>
@@ -295,7 +295,7 @@
         <translation>Vauvan seuranta</translation>
     </message>
     <message>
-        <source>0.4.4</source>
+        <source>0.4.5</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

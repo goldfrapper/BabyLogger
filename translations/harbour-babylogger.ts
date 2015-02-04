@@ -194,23 +194,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="66"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="94"/>
         <source>Common choices:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="70"/>
-        <source>Breast milk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="74"/>
-        <source>Formula 60ml</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="78"/>
-        <source>Formula 120ml</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -276,7 +261,7 @@
     </message>
     <message>
         <location filename="../qml/harbour-babylogger.qml" line="11"/>
-        <source>0.4.4</source>
+        <source>0.4.5</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
