@@ -176,6 +176,13 @@
     </message>
 </context>
 <context>
+    <name>NotificationDialog</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>

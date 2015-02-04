@@ -429,6 +429,8 @@ ListModel {
      */
     function updateLogEntry( index, new_timestamp )
     {
+        var dialog;
+
         // Given entry should exist
         var curr = get( index );
         if(!curr) {
@@ -439,8 +441,9 @@ ListModel {
 
         // Should not be in the future
         if(new_timestamp > Date.now()) {
-            // TODO show warning
-            console.log("nah...");
+            dialog = pageStack.push(notification_dialog);
+            dialog.title = qsTr("Update failed");
+            dialog.description = qsTr("The given time must not be in the future");
             return false;
         }
 
@@ -451,8 +454,9 @@ ListModel {
             var next = getNextSleepAction(index);
 
             if( new_timestamp <= prev.date || (next && next.date <= new_timestamp)) {
-                // TODO show warning
-                console.log("nah...");
+                dialog = pageStack.push(notification_dialog);
+                dialog.title = qsTr("Update failed");
+                dialog.description = qsTr("You cannot update beyond the boundaries of adjoining sleep logs");
                 return false;
             }
         }

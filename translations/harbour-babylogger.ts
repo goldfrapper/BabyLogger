@@ -200,6 +200,14 @@
     </message>
 </context>
 <context>
+    <name>NotificationDialog</name>
+    <message>
+        <location filename="../qml/pages/NotificationDialog.qml" line="16"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="21"/>

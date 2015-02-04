@@ -23,6 +23,11 @@ ApplicationWindow
     }
     default property alias babymodel: babymodel
 
+    Component {
+        id: notification_dialog
+        NotificationDialog {}
+    }
+
     initialPage: Component { FirstPage {} }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 }
