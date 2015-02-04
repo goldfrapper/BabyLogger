@@ -33,7 +33,8 @@ OTHER_FILES += qml/harbour-babylogger.qml \
     qml/pages/Definition.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/ConfirmDialog.qml \
-    CHANGELOG
+    CHANGELOG \
+    qml/components/Settings.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
