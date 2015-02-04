@@ -217,11 +217,20 @@ ListModel {
 
     /**
      * Update the meal properties / counters
+     *
+     * This function will search for the first meal in a sequence of meals. The time
+     * since last meal will thus be 'since the beginning of last meal sequence'
      */
     function setMealCounters()
     {
-        var meal = babymodel.getPrevMeal(-1);
-        last_meal_time = (meal && meal.date)? meal.date : 0;
+        last_meal_time = 0;
+        for(var i = 0; i < count; i++) {
+            if(get(i).action === "meal") {
+                if((i < (count - 1)) && (get(i + 1).action === "meal")) continue;
+                last_meal_time = get(i).date;
+                break;
+            }
+        }
     }
 
     /**
