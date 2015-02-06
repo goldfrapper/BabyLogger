@@ -220,13 +220,14 @@ ListModel {
      *
      * This function will search for the first meal in a sequence of meals. The time
      * since last meal will thus be 'since the beginning of last meal sequence'
+     * An interval of +1 hour between meals is considered the end of a sequence
      */
     function setMealCounters()
     {
         last_meal_time = 0;
         for(var i = 0; i < count; i++) {
             if(get(i).action === "meal") {
-                if((i < (count - 1)) && (get(i + 1).action === "meal")) continue;
+                if((i < (count - 1)) && (get(i + 1).action === "meal") && (get(i).date - get(i + 1).date > 36000000) ) continue;
                 last_meal_time = get(i).date;
                 break;
             }

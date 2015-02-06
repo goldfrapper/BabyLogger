@@ -87,18 +87,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/BabyModel.qml" line="492"/>
-        <location filename="../qml/pages/BabyModel.qml" line="505"/>
+        <location filename="../qml/pages/BabyModel.qml" line="493"/>
+        <location filename="../qml/pages/BabyModel.qml" line="506"/>
         <source>Update failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/BabyModel.qml" line="493"/>
+        <location filename="../qml/pages/BabyModel.qml" line="494"/>
         <source>The given time must not be in the future</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/BabyModel.qml" line="506"/>
+        <location filename="../qml/pages/BabyModel.qml" line="507"/>
         <source>You cannot update beyond the boundaries of adjoining sleep logs</source>
         <translation type="unfinished"></translation>
     </message>
