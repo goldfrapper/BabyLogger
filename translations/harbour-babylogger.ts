@@ -86,6 +86,22 @@
         <source>Meal</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../qml/pages/BabyModel.qml" line="492"/>
+        <location filename="../qml/pages/BabyModel.qml" line="505"/>
+        <source>Update failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/BabyModel.qml" line="493"/>
+        <source>The given time must not be in the future</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/BabyModel.qml" line="506"/>
+        <source>You cannot update beyond the boundaries of adjoining sleep logs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Counter</name>
@@ -113,32 +129,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="97"/>
+        <location filename="../qml/pages/FirstPage.qml" line="106"/>
+        <source>total sleep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FirstPage.qml" line="128"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="103"/>
+        <location filename="../qml/pages/FirstPage.qml" line="134"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="109"/>
+        <location filename="../qml/pages/FirstPage.qml" line="140"/>
         <source>Log Meal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="134"/>
+        <location filename="../qml/pages/FirstPage.qml" line="165"/>
         <source>Stop sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="134"/>
+        <location filename="../qml/pages/FirstPage.qml" line="165"/>
         <source>Start sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="139"/>
+        <location filename="../qml/pages/FirstPage.qml" line="170"/>
         <source>Actions Menu</source>
         <translation type="unfinished"></translation>
     </message>

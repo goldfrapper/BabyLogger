@@ -70,6 +70,18 @@
         <source>Meal</source>
         <translation>Ateria</translation>
     </message>
+    <message>
+        <source>Update failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The given time must not be in the future</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You cannot update beyond the boundaries of adjoining sleep logs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Counter</name>
@@ -115,6 +127,10 @@
     <message>
         <source>You have not yet logged anything. Start by selecting &apos;Start sleep&apos; or &apos;Log meal&apos; from the pull-down menu.</source>
         <translation>Et ole vielä kirjannut mitään. Aloita valitsemalla alasvetovalikosta &apos;Nukahtaminen&apos; tai &apos;Kirjaa ateria&apos;.</translation>
+    </message>
+    <message>
+        <source>total sleep</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -105,7 +105,7 @@ ListModel {
         return {
             date: timestamp,
             action: action,
-            day: Qt.formatDate(date)
+            day: Qt.formatDate(date, Qt.ISODate)
         };
     }
 
@@ -422,6 +422,53 @@ ListModel {
             default:
                 return d.join(":");
         }
+    }
+
+    /**
+     * Calculate the total sleeping time per day
+     */
+    function getTotalSleepPerDay( dateObject, format )
+    {
+        if(!dateObject instanceof Date) {
+            console.log("Invalid date object given: " + typeof dateObject);
+        }
+
+        var date = Qt.formatDate(dateObject, Qt.ISODate);
+
+        var totalSleep = "???";
+        var db = _getDatabaseHandle();
+        db.transaction(function(tx)
+        {
+            try {
+                var sql = "
+                SELECT
+                    CASE WHEN name = 'sleep_stop' THEN (
+                       CASE WHEN date() = ?
+                       THEN ((strftime('%s') - strftime('%s', 'now', 'start of day')) - (max(sum) - min(sum)))
+                       ELSE (86400 - (max(sum) - min(sum))) END
+                    )
+                    ELSE (max(sum) - min(sum)) END
+                  as totalSleep
+                FROM (
+                  SELECT sum(date)/1000 as sum, name FROM actions
+                  WHERE date BETWEEN strftime('%s', ?) * 1000 AND strftime('%s', ?, '+1 days') * 1000
+                  GROUP BY name ORDER BY name
+                ) a";
+                var rs = tx.executeSql(sql, [date, date, date]);
+                if(rs.rows.length) {
+                    var row = rs.rows.item(0);
+                    totalSleep = row.totalSleep;
+                } else {
+                    console.log("no data");
+                }
+            } catch(e) {
+                // TODO show warning
+                console.log("fuck", e);
+            }
+
+            return totalSleep;
+        });
+        return totalSleep;
     }
 
     /**

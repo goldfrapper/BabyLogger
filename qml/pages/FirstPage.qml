@@ -67,16 +67,47 @@ Page {
         }
 
         section.property: "day"
-        section.delegate: SectionHeader {
-            text: section
-            height: Theme.itemSizeExtraSmall
-            font.pixelSize: Theme.fontSizeMedium
+//        section.labelPositioning: ViewSection.CurrentLabelAtStart
 
-//            Label {
-//                text: "00:00 total sleep"
-//                font.pixelSize: Theme.fontSizeTiny
-//                anchors.bottom: parent.bottom
-//            }
+        section.delegate: BackgroundItem {
+            height: Theme.itemSizeSmall
+            anchors.rightMargin: Theme.paddingLarge
+            width: parent.width - Theme.paddingLarge
+
+            Label {
+                id: section_header
+                text: Qt.formatDate(new Date(section))
+                font.pixelSize: Theme.fontSizeMedium
+                color: Theme.highlightColor
+                horizontalAlignment: Text.AlignRight
+                width: parent.width
+                anchors.rightMargin: Theme.paddingLarge
+            }
+
+            Row {
+                anchors.top: section_header.bottom
+                spacing: 5
+                width: parent.width
+                anchors.rightMargin: Theme.paddingLarge
+
+                layoutDirection: Qt.RightToLeft
+
+                Label {
+                    function formatTotalSleepPerDay()
+                    {
+                        var total = babymodel.getTotalSleepPerDay(new Date(section));
+                        return babymodel.formatDuration(0, "h", total * 1000);
+                    }
+                    text: formatTotalSleepPerDay()
+                    font.pixelSize: Theme.fontSizeTiny
+                    color: Theme.highlightColor
+                }
+                Label {
+                    text: qsTr("total sleep")
+                    font.pixelSize: Theme.fontSizeTiny
+                    color: Theme.highlightColor
+                }
+            }
         }
 
         delegate: Item {
