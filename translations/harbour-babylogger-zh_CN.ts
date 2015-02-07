@@ -11,7 +11,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="39"/>
         <source>Native SailfishOS application for monitoring/logging activity of a human baby.</source>
-        <translation>一个旗鱼系统原生应用，可以用来监控/记录人类宝宝的活动。</translation>
+        <translation>一个旗鱼系统原生应用，可以用来监控/记录宝宝的活动。</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="48"/>
