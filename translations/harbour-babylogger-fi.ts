@@ -72,15 +72,15 @@
     </message>
     <message>
         <source>Update failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Päivitys epäonnistui</translation>
     </message>
     <message>
         <source>The given time must not be in the future</source>
-        <translation type="unfinished"></translation>
+        <translation>Syötetty aika ei voi olla tulevaisuudessa</translation>
     </message>
     <message>
         <source>You cannot update beyond the boundaries of adjoining sleep logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Aika-arvoa ei voi päivittää edellisen tai seuraavan unijakson päälle</translation>
     </message>
 </context>
 <context>
@@ -175,18 +175,6 @@
         <translation>Pikavalinnat:</translation>
     </message>
     <message>
-        <source>Breast milk</source>
-        <translation type="vanished">Äidinmaito</translation>
-    </message>
-    <message>
-        <source>Formula 60ml</source>
-        <translation type="vanished">Korvike 60ml</translation>
-    </message>
-    <message>
-        <source>Formula 120ml</source>
-        <translation type="vanished">Korvike 120ml</translation>
-    </message>
-    <message>
         <source>Add</source>
         <translation>Lisää</translation>
     </message>
@@ -195,7 +183,7 @@
     <name>NotificationDialog</name>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Takaisin</translation>
     </message>
 </context>
 <context>
