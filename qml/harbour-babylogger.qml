@@ -8,8 +8,8 @@ ApplicationWindow
     id: mainwindow
 
     property string appName: qsTr("Baby Logger");
-    property string appVersion: qsTr("0.4.5");
-    property bool is_development: false
+    property string appVersion: qsTr("0.4.6");
+    property bool is_development: true
 
     // Instantiate Settings
     Settings {
