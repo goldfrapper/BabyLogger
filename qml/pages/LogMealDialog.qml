@@ -46,14 +46,16 @@ Dialog {
         label: qsTr("Quantity")
         
         minimumValue: 0
-        maximumValue: 300
+        maximumValue: 500
         value: 60
-        stepSize: 10
+        stepSize: 1
         valueText: value + " ml"
     }
 
     BackgroundItem {
+        id: common_choices
         width: parent.width
+        height: Theme.itemSizeSmall * 3
         anchors.top: d_quantity.bottom
         anchors.topMargin: Theme.paddingLarge
 
@@ -67,8 +69,9 @@ Dialog {
 
             Repeater {
                 model: mainwindow.babymodel.getTopMeals();
+                height: childrenRect.height
                 Button {
-                    text: modelData.type + " " + modelData.qty + "ml"
+                    text: modelData.title
                     anchors.horizontalCenter: parent.horizontalCenter
                     onClicked: {
 
@@ -81,6 +84,28 @@ Dialog {
                     }
                 }
             }
+        }
+    }
+
+    ValueButton {
+        anchors.top: common_choices.bottom
+        anchors.topMargin: (Theme.paddingLarge * 2)
+        label: qsTr("Time since start of meal:")
+        description: qsTr("This amount is automaticly substracted from the current time")
+        value: settings.time_since_startmeal
+
+        onClicked: {
+            var d = value.split(":");
+            var dialog = pageStack.push("Sailfish.Silica.TimePickerDialog", {
+                hour: d[0],
+                minute: d[1],
+                hourMode: DateTime.DefaultHours
+            });
+
+            dialog.accepted.connect(function() {
+                value = dialog.timeText.substring(0,5);
+                settings.set("time_since_startmeal", value);
+            })
         }
     }
 }

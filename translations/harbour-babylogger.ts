@@ -87,18 +87,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/BabyModel.qml" line="493"/>
-        <location filename="../qml/pages/BabyModel.qml" line="506"/>
+        <location filename="../qml/pages/BabyModel.qml" line="514"/>
+        <location filename="../qml/pages/BabyModel.qml" line="527"/>
         <source>Update failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/BabyModel.qml" line="494"/>
+        <location filename="../qml/pages/BabyModel.qml" line="515"/>
         <source>The given time must not be in the future</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/BabyModel.qml" line="507"/>
+        <location filename="../qml/pages/BabyModel.qml" line="528"/>
         <source>You cannot update beyond the boundaries of adjoining sleep logs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -215,8 +215,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="65"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="67"/>
         <source>Common choices:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LogMealDialog.qml" line="93"/>
+        <source>Time since start of meal:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LogMealDialog.qml" line="94"/>
+        <source>This amount is automaticly substracted from the current time</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

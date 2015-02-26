@@ -5,6 +5,7 @@ QtObject {
     id: settings
     property string max_awake_time: "01:30"
     property string max_meal_time: "04:00"
+    property string time_since_startmeal: "00:10"
     
     Component.onCompleted:
     {
@@ -21,6 +22,7 @@ QtObject {
                         switch(row.key) {
                         case "max_awake_time": max_awake_time = row.value; break;
                         case "max_meal_time": max_meal_time = row.value; break;
+                        case "time_since_startmeal": time_since_startmeal = row.value; break;
                         }
                     }
                 }
@@ -44,6 +46,7 @@ QtObject {
                     switch(key) {
                     case "max_awake_time": max_awake_time = value; break;
                     case "max_meal_time": max_meal_time = value; break;
+                    case "time_since_startmeal": time_since_startmeal = value; break;
                     }
                 }
             } catch(e) {

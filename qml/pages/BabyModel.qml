@@ -77,6 +77,7 @@ ListModel {
             try {
                 var rs = tx.executeSql("DELETE FROM meal");
                 var rs1 = tx.executeSql("DELETE FROM actions");
+                var rs2 = tx.executeSql("DELETE FROM setting");
                 if(count && !rs.rowsAffected) {
                     console.log("failed or no data", rs.rowsAffected);
                 } else {
@@ -136,6 +137,14 @@ ListModel {
     function logMeal( type, quantity )
     {
         var ts = Date.now();
+
+        // Fix meal start time
+        if(settings.time_since_startmeal) {
+            var d = settings.time_since_startmeal.split(":");
+            var duration = parseInt(d[0]) * 3600;
+            duration += parseInt(d[1]) * 60;
+            ts = ts - (duration * 1000);
+        }
 
         // Validate
         if(meal_types.indexOf(type) === -1 || parseInt(quantity) !== quantity) {
@@ -244,18 +253,30 @@ ListModel {
         db.transaction(function(tx)
         {
             try {
-                var sql = "SELECT * FROM meal WHERE datetime(date/1000, 'unixepoch') > datetime('now', '-3 day')";
-                sql = sql + " GROUP BY type, qty ORDER BY count(*) LIMIT 3"
+//                var sql = "SELECT * FROM meal WHERE datetime(date/1000, 'unixepoch') > datetime('now', '-3 day')";
+//                sql = sql + " GROUP BY type, qty ORDER BY count(*) DESC LIMIT 3"
+
+                var sql =   "select type, qty, count(*) from meal ";
+                sql = sql + "where time(date/1000, 'unixepoch') between time('now', '-1 hour') ";
+                sql = sql + "and time('now', '+1 hour') ";
+                sql = sql + "and date(date/1000, 'unixepoch') > date('now', '-10 days') ";
+                sql = sql + "group by type, qty order by count(*) desc limit 3 ";
+
+//                sql = sql + "union (SELECT * FROM meal WHERE date(date/1000, 'unixepoch') > date('now', '-3 day') ";
+//                sql = sql + "GROUP BY type, qty ORDER BY count(*) DESC LIMIT 3)";
+//                sql = sql + "LIMIT 3";
+
                 var rs = tx.executeSql(sql);
                 if(!rs.rows.length) {
                     // we choose at will
-                    topMeals.push({type: "Breast milk", qty: "0"});
-                    topMeals.push({type: "Formula", qty: "60"});
-                    topMeals.push({type: "Formula", qty: "120"});
+                    topMeals.push({type: "Breast milk", qty: "0", title: "Breast milk"});
+                    topMeals.push({type: "Formula", qty: "60", title: "Formula 60ml"});
+                    topMeals.push({type: "Formula", qty: "120", title: "Formula 120ml"});
                 } else {
                     for(var i = 0; i < rs.rows.length; i++) {
                         var row = rs.rows.item(i);
-                        topMeals.push({type: row.type, qty: row.qty});
+                        var title = (row.qty? row.type + " " + row.qty + "ml" : row.type);
+                        topMeals.push({type: row.type, qty: row.qty, title: title});
                     }
                 }
             } catch(e) {

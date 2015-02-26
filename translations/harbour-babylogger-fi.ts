@@ -178,6 +178,14 @@
         <source>Add</source>
         <translation>Lisää</translation>
     </message>
+    <message>
+        <source>Time since start of meal:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This amount is automaticly substracted from the current time</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NotificationDialog</name>
