@@ -32,3 +32,4 @@ Makefile*
 *.qmlproject.user.*
 
 queries.sql
+Thumbs.db
