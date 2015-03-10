@@ -34,7 +34,8 @@ OTHER_FILES += qml/harbour-babylogger.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/ConfirmDialog.qml \
     CHANGELOG \
-    qml/components/Settings.qml
+    qml/components/Settings.qml \
+    qml/pages/DatetimeSelectionDialog.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

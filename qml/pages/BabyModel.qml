@@ -257,9 +257,9 @@ ListModel {
 //                sql = sql + " GROUP BY type, qty ORDER BY count(*) DESC LIMIT 3"
 
                 var sql =   "select type, qty, count(*) from meal ";
-                sql = sql + "where time(date/1000, 'unixepoch') between time('now', '-1 hour') ";
+                sql = sql + "where time(date/1000, 'unixepoch') between time('now', '-3 hours') ";
                 sql = sql + "and time('now', '+1 hour') ";
-                sql = sql + "and date(date/1000, 'unixepoch') > date('now', '-10 days') ";
+                sql = sql + "and date(date/1000, 'unixepoch') > date('now', '-5 days') ";
                 sql = sql + "group by type, qty order by count(*) desc limit 3 ";
 
 //                sql = sql + "union (SELECT * FROM meal WHERE date(date/1000, 'unixepoch') > date('now', '-3 day') ";

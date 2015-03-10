@@ -158,11 +158,6 @@
         <source>Start sleep</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../qml/pages/FirstPage.qml" line="170"/>
-        <source>Actions Menu</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LogEntryItem</name>
@@ -182,17 +177,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogEntryItem.qml" line="127"/>
+        <location filename="../qml/pages/LogEntryItem.qml" line="126"/>
         <source>Updating time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogEntryItem.qml" line="157"/>
+        <location filename="../qml/pages/LogEntryItem.qml" line="155"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogEntryItem.qml" line="160"/>
+        <location filename="../qml/pages/LogEntryItem.qml" line="158"/>
         <source>Deleting entry</source>
         <translation type="unfinished"></translation>
     </message>
@@ -206,26 +201,31 @@
     </message>
     <message>
         <location filename="../qml/pages/LogMealDialog.qml" line="26"/>
-        <source>Type</source>
+        <source>Meal Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="46"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="29"/>
+        <source>Select the type of food given. Currently supported types are breastmilk, formula and pureed food.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LogMealDialog.qml" line="48"/>
         <source>Quantity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="67"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="69"/>
         <source>Common choices:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="93"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="95"/>
         <source>Time since start of meal:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LogMealDialog.qml" line="94"/>
+        <location filename="../qml/pages/LogMealDialog.qml" line="96"/>
         <source>This amount is automaticly substracted from the current time</source>
         <translation type="unfinished"></translation>
     </message>

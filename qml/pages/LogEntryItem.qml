@@ -113,7 +113,6 @@ BackgroundItem {
                     var d = new Date(currentTimestamp);
                     
                     var orig = d.toString();
-                    
                     var dialog = pageStack.push("Sailfish.Silica.TimePickerDialog", {
                                                     hour: d.getHours(),
                                                     minute: d.getMinutes(),
@@ -130,7 +129,7 @@ BackgroundItem {
                     })
                 }
             }
-            /* Disabled setting date
+/* Setting the date this way does not work: date and and time should be set at once
                         MenuItem {
                             text: qsTr("Set date")
                             onClicked: {
@@ -150,8 +149,7 @@ BackgroundItem {
                                 })
                             }
                         }
-                        */
-            
+*/
             // Delete entry (only for first log item)
             MenuItem {
                 text: qsTr("Delete")

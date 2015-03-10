@@ -34,3 +34,10 @@ Changelog:
 - many small bugfixes eg: Fixed #24
 - Set release version to 0.4.4
 
+0.4.6
+-----
+- Improved log meal dialog: Fixes #38, Fixes #5
+- Updated application icon
+- Added coveractions for toggleSleep and meal; Fixes #36
+- Fixes #2 : per day statistics (experimental)
+- Bugfixes

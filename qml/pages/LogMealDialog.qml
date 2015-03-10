@@ -23,8 +23,10 @@ Dialog {
     ComboBox {
         id: d_select
         width: parent.width
-        label: qsTr("Type")
+        label: qsTr("Meal Type")
         currentIndex: 1
+
+        description: qsTr("Select the type of food given. Currently supported types are breastmilk, formula and pureed food.")
         
         anchors.top: d_header.bottom
         
@@ -46,7 +48,7 @@ Dialog {
         label: qsTr("Quantity")
         
         minimumValue: 0
-        maximumValue: 500
+        maximumValue: 250
         value: 60
         stepSize: 1
         valueText: value + " ml"

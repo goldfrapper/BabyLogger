@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Actions Menu</source>
-        <translation>Toiminnot</translation>
+        <translation type="vanished">Toiminnot</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -164,7 +164,7 @@
     <name>LogMealDialog</name>
     <message>
         <source>Type</source>
-        <translation>Tyyppi</translation>
+        <translation type="vanished">Tyyppi</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -184,6 +184,14 @@
     </message>
     <message>
         <source>This amount is automaticly substracted from the current time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meal Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the type of food given. Currently supported types are breastmilk, formula and pureed food.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

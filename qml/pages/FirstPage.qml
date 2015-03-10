@@ -145,9 +145,9 @@ Page {
             MenuItem {
                 text: getButtonTitle()
                 onClicked: {
-                    remorse.execute(text, function() {
+//                    remorse.execute(text, function() {
                         mainwindow.babymodel.toggleSleep()   // Register start/stop
-                    });
+//                    });
                 }
 
                 Component.onCompleted: {
@@ -166,9 +166,9 @@ Page {
                 }
             }
 
-            MenuLabel {
-                text: qsTr("Actions Menu")
-            }
+//            MenuLabel {
+//                text: qsTr("Actions Menu")
+//            }
         }
 
         VerticalScrollDecorator {}
